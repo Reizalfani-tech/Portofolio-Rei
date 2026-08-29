@@ -1501,7 +1501,8 @@ nav ul li a:hover {
     position: relative;
     width: 100%;
     max-width: 550px; 
-    line-height: 0; 
+    line-height: 0;
+    margin-top: 100px !important; 
     
     /* GANTI INI: Hapus semua elemen yang memenjarakan foto */
     border: none; 
