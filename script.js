@@ -1,119 +1,235 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* =========================================================================
+   1. THEME TOGGLE (DARK/LIGHT MODE)
+========================================================================= */
+const toggleBtn = document.getElementById("theme-toggle");
+const body = document.body;
 
-    /* 1. LOADER & REALTIME CLOCK */
-    const counter = document.getElementById('counter');
-    let count = 0;
-    const loaderInterval = setInterval(() => {
-        count += 5;
-        counter.textContent = count;
-        if (count >= 100) {
-            clearInterval(loaderInterval);
-            document.getElementById('loader').style.transform = 'translateY(-100%)';
+if (localStorage.getItem("theme") === "dark") {
+    body.setAttribute("data-theme", "dark");
+    if(toggleBtn) toggleBtn.textContent = "☀️";
+}
+
+if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+        if (body.getAttribute("data-theme") === "dark") {
+            body.removeAttribute("data-theme");
+            localStorage.setItem("theme", "light");
+            toggleBtn.textContent = "🌙";
+        } else {
+            body.setAttribute("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
+            toggleBtn.textContent = "☀️";
         }
-    }, 30);
+    });
+}
 
-    const updateTime = () => {
-        const now = new Date();
-        document.getElementById('live-time').textContent = now.toLocaleTimeString('id-ID');
-    };
-    setInterval(updateTime, 1000);
-    updateTime();
+/* =========================================================================
+   2. LIVE TIME CLOCK (PALEMBANG, ID)
+========================================================================= */
+function updateLiveTime() {
+    const timeElement = document.getElementById('live-time');
+    if (!timeElement) return;
 
-    /* 2. THREE.JS / CANVAS 3D BACKGROUND (Interactive Particle Grid) */
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+}
+updateLiveTime();
+setInterval(updateLiveTime, 1000);
+
+/* =========================================================================
+   3. HAMBURGER MENU LOGIC
+========================================================================= */
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const navLinks = document.querySelectorAll('.jas-nav li a');
+
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('toggle');
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('toggle');
+        });
+    });
+}
+
+document.addEventListener('click', (event) => {
+    if (!navMenu || !hamburger) return;
+    const isClickInsideMenu = navMenu.contains(event.target);
+    const isClickOnHamburger = hamburger.contains(event.target);
+
+    if (navMenu.classList.contains('active') && !isClickInsideMenu && !isClickOnHamburger) {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('toggle');
+    }
+});
+
+/* =========================================================================
+   4. SCROLL PARALLAX EFFECT
+========================================================================= */
+window.addEventListener('scroll', () => {
+    const portfolio = document.getElementById('portfolio-section');
+    const experiences = document.getElementById('experiences-section');
     
-    const resizeCanvas = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    if (!portfolio || !experiences) return;
 
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = Math.random() * 1 - 0.5;
-            this.speedY = Math.random() * 1 - 0.5;
-        }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.x > canvas.width) this.x = 0;
-            if (this.x < 0) this.x = canvas.width;
-            if (this.y > canvas.height) this.y = 0;
-            if (this.y < 0) this.y = canvas.height;
-        }
-        draw() {
-            ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--accent-color').trim();
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
+    const expRect = experiences.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (expRect.top < windowHeight && expRect.top > 0) {
+        let progress = 1 - (expRect.top / windowHeight);
+        portfolio.style.opacity = 1 - (progress * 0.7);
+        portfolio.style.transform = `scale(${1 - (progress * 0.05)}) translateY(${progress * 30}px)`;
+    } else if (expRect.top >= windowHeight) {
+        portfolio.style.opacity = 1;
+        portfolio.style.transform = 'scale(1) translateY(0)';
+    }
+});
+
+/* =========================================================================
+   5. INITIALIZATION ON DOM LOAD
+========================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // Split Text & Hero Name entrance
+    function splitTextIntoSpans() {
+        const nameElement = document.getElementById("interactive-name");
+        if (!nameElement) return; 
+
+        const text = nameElement.innerText;
+        nameElement.innerText = ""; 
+
+        text.split("").forEach(char => {
+            const span = document.createElement("span");
+            span.innerText = char === " " ? "\u00A0" : char; 
+            nameElement.appendChild(span);
+        });
     }
 
-    for (let i = 0; i < 70; i++) particles.push(new Particle());
+    function animateNameEntrance() {
+        const nameElement = document.getElementById("interactive-name");
+        if (!nameElement) return;
 
-    const animateCanvas = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            p.update();
-            p.draw();
+        const letters = nameElement.querySelectorAll('span');
+        letters.forEach((letter, index) => {
+            setTimeout(() => {
+                letter.classList.add('animate-in');
+            }, index * 80); 
         });
-        requestAnimationFrame(animateCanvas);
-    };
-    animateCanvas();
+    }
 
-    /* 3. SCROLL REVEAL INTERACTION (INTERSECTION OBSERVER) */
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
-    const revealObserver = new IntersectionObserver((entries) => {
+    function startLoader() {
+        let counterElement = document.getElementById("counter");
+        let loader = document.getElementById("loader");
+        
+        if (!counterElement || !loader) return; 
+
+        let currentValue = 0;
+        function updateCounter() {
+            if (currentValue === 100) {
+                loader.style.transform = "translateY(-100%)";
+                setTimeout(animateNameEntrance, 800); 
+                return;
+            }
+
+            currentValue += Math.floor(Math.random() * 15) + 1;
+            if (currentValue > 100) currentValue = 100;
+
+            counterElement.textContent = currentValue.toString().padStart(3, '0');
+            let delay = Math.floor(Math.random() * 150) + 30;
+            setTimeout(updateCounter, delay);
+        }
+        updateCounter();
+    }
+
+    splitTextIntoSpans();
+    startLoader();
+
+    // Intersection Observer for Animations
+    const headings = document.querySelectorAll('section h2');
+    const animationTypes = ['reveal-slide-up', 'reveal-stomp', 'reveal-slide-side', 'reveal-flip'];
+
+    headings.forEach((h2, index) => {
+        const animClass = animationTypes[index % animationTypes.length];
+        h2.classList.add('reveal-base', animClass);
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0 
+    };
+
+    const headingObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
+            } else {
+                entry.target.classList.remove('is-visible');
             }
         });
-    }, { threshold: 0.15 });
+    }, observerOptions);
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    headings.forEach(h2 => headingObserver.observe(h2));
 
-    /* 4. UNIFIED 3D CARD TILT EFFECT */
-    const tiltCards = document.querySelectorAll('[data-tilt]');
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            card.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        });
-    });
-
-    /* 5. CV MODAL SYSTEM */
+    // Modals Handling
     const cvModal = document.getElementById('cv-modal');
-    const openCvBtn = document.getElementById('open-cv-btn');
-    const closeCvBtn = document.getElementById('close-cv-btn');
-    const modalOverlay = document.getElementById('modal-overlay');
+    const viewCvLink = document.getElementById('view-cv-link'); 
+    const closeCvBtn = document.getElementById('close-cv');
+    const overlay = document.getElementById('modal-overlay');
 
-    const toggleModal = (show) => {
-        cvModal.classList.toggle('active', show);
-        document.body.style.overflow = show ? 'hidden' : 'auto';
+    if (viewCvLink && cvModal) {
+        viewCvLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            cvModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        });
+    }
+
+    const closeFunc = () => {
+        if (cvModal) {
+            cvModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     };
 
-    openCvBtn?.addEventListener('click', () => toggleModal(true));
-    closeCvBtn?.addEventListener('click', () => toggleModal(false));
-    modalOverlay?.addEventListener('click', () => toggleModal(false));
+    if (closeCvBtn) closeCvBtn.addEventListener('click', closeFunc);
+    if (overlay) overlay.addEventListener('click', closeFunc);
 
-    /* 6. THEME TOGGLE */
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    themeToggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('light-theme');
-        const isLight = document.body.classList.contains('light-theme');
-        themeToggleBtn.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    });
+    // Cert Modal
+    const certModal = document.getElementById('cert-modal');
+    const certPreviewImg = document.getElementById('cert-preview-img');
+    const viewCertBtns = document.querySelectorAll('.view-cert-btn');
+    const closeCertBtn = document.getElementById('close-cert-btn');
+    const certOverlay = document.getElementById('cert-modal-overlay');
+
+    if (certModal && viewCertBtns.length > 0) {
+        viewCertBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const imgSrc = btn.getAttribute('data-cert');
+                if (imgSrc && imgSrc !== "#") {
+                    certPreviewImg.src = imgSrc;
+                    certModal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; 
+                }
+            });
+        });
+
+        const closeCertModal = () => {
+            certModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+            setTimeout(() => { certPreviewImg.src = ""; }, 300); 
+        };
+
+        if (closeCertBtn) closeCertBtn.addEventListener('click', closeCertModal);
+        if (certOverlay) certOverlay.addEventListener('click', closeCertModal);
+    }
 });
