@@ -1,113 +1,462 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Reizalfani Baharudin - Portfolio & CV</title>
-    
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <title>Muhammad Izzan Fieldi - Portfolio</title>
 
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Muhammad Izzan Fieldi - Portfolio_files/css2" rel="stylesheet">
+
+    <link rel="stylesheet" href="./Muhammad Izzan Fieldi - Portfolio_files/style.css">
 </head>
-<body class="dark-theme">
+<body class="page-transition" style="overflow: auto;">
 
-    <!-- 3D Background Canvas -->
-    <canvas id="bg-canvas"></canvas>
-
-    <!-- Page Loader -->
-    <div id="loader">
+    <div id="loader" style="transform: translateY(-100%);">
         <div class="loader-content">
-            <div class="spinner-3d"></div>
-            <span id="counter">0</span>%
+            <span id="counter">100</span>
         </div>
     </div>
 
-    <!-- Header Navigation -->
     <header class="jas-header" id="header">
         <nav class="container">
             <div class="location">
-                <span>BEKASI, ID</span> • <span id="live-time">00:00:00</span>
+                <span>PALEMBANG, ID</span> • <span id="live-time">01:22:20</span>
             </div>
             <a href="#hero" class="logo">
-                <span class="logo-text">MRB<span>.3D</span></span>
+                <img src="./Muhammad Izzan Fieldi - Portfolio_files/Logo Izzan.png" alt="Muhammad Izzan Fieldi Logo" class="logo-img">
             </a>
 
             <ul class="jas-nav" id="nav-menu">
                 <li><a href="#hero" data-text="HOME">HOME</a></li>
+                <li><a href="#portfolio-section" data-text="PORTFOLIO">PORTFOLIO</a></li>
+                <li><a href="#experiences-section" data-text="EXPERIENCES">EXPERIENCES</a></li>
                 <li><a href="#about-section" data-text="ABOUT">ABOUT</a></li>
-                <li><a href="#experiences-section" data-text="EXPERIENCE">EXPERIENCE</a></li>
-                <li><a href="#portfolio-section" data-text="PROJECTS">PROJECTS</a></li>
-                <li><a href="#achievements-section" data-text="AWARDS">AWARDS</a></li>
             </ul>
             
             <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+                <button class="theme-toggle" id="theme-toggle">🌙</button>
                 <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                   <span></span>
+                   <span></span>
+                   <span></span>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section id="hero" class="hero">
-        <div class="hero-container container">
-            <div class="hero-3d-card card-3d" data-tilt>
-                <p class="hero-subtitle">PRODUCTION TECHNICIAN & INDUSTRIAL AUTOMATION</p>
-                <h1 class="hero-name" id="interactive-name">
-                    M. REIZALFANI BAHARUDIN
-                </h1>
-                <p class="hero-desc">Manufacturing professional with over 7 years of experience in continuous improvement, digitalization, machine inspection systems, and IoT solutions.</p>
-                <div class="hero-cta">
-                    <button class="btn-primary-3d" id="open-cv-btn">VIEW FULL CV & RESUME ↗</button>
-                    <a href="#contact" class="btn-secondary-3d">GET IN TOUCH</a>
+        <div class="hero-container">
+            <h1 class="hero-name" id="interactive-name">
+                <span class="animate-in">I</span><span class="animate-in">Z</span><span class="animate-in">Z</span><span class="animate-in">A</span><span class="animate-in">N</span><span class="animate-in">&nbsp;</span><span class="animate-in">F</span><span class="animate-in">I</span><span class="animate-in">E</span><span class="animate-in">L</span><span class="animate-in">D</span><span class="animate-in">I</span>
+            </h1>
+            
+            <div class="hero-footer">
+                <p>I AM A</p>
+                <div class="role-slider">
+                    <div class="role-list">
+                        <span>HCI RESEARCHER</span>
+                        <span>ERP FUNCTIONAL</span>
+                        <span>UX/UI DESIGNER</span>
+                        <span>SYSTEM ANALYST</span>
+                        <span>DATA ANALYST</span>
+                        <span>HCI RESEARCHER</span>
+                        <span>DATA ANALYTICS &amp; BI</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Marquee Banner -->
     <div class="marquee">
         <div class="marquee-content">
-            <span>PLC PROGRAMMING • DIGITALIZED SYSTEMS • IOT MACHINE LEARNING • TRACEABILITY • QCC EXPERT • AUTOMATION • </span>
-            <span>PLC PROGRAMMING • DIGITALIZED SYSTEMS • IOT MACHINE LEARNING • TRACEABILITY • QCC EXPERT • AUTOMATION • </span>
+            <span>SYSTEM/DATA ANALYSIS • DATA ANALYTICS &amp; BI • HCI RESEARCH • UX/UI DESIGN • ERP FUNCTIONAL • </span>
+            <span>SYSTEM/DATA ANALYSIS • DATA ANALYTICS &amp; BI • HCI RESEARCH • UX/UI DESIGN • ERP FUNCTIONAL • </span>
+            <span>SYSTEM/DATA ANALYSIS • DATA ANALYTICS &amp; BI • HCI RESEARCH • UX/UI DESIGN • ERP FUNCTIONAL • </span>
         </div>
     </div>
 
-    <!-- About Section -->
-    <section id="about-section" class="section-padding">
-        <div class="container grid-2col">
-            <div class="about-image-wrapper card-3d" data-tilt>
-                <div class="about-image-container">
-                    <img src="./assets/profile.jpg" alt="Muhammad Reizalfani Baharudin" class="about-img">
-                    <div class="grain-overlay"></div>
+    <section id="portfolio-section" class="section-padding">
+        <div class="container">
+            <h2 class="reveal-base reveal-slide-up">FEATURED WORKS</h2>
+            <div class="portfolio-list">
+                
+                <a href="wms-casestudy.html" class="portfolio-row">
+                    <div class="port-left-group">
+                        <div class="port-title-wrapper">
+                            <span class="port-num">01</span>
+                            <h3 class="port-title">Warehouse Management System</h3>
+                        </div>
+                        <p class="port-tags">UI/UX Research • TCSD Method • Journal Published</p>
+                    </div>
+                    <div class="port-right-group">
+                        <div class="inline-img-wrapper">
+                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Porto.png" alt="WMS Project">
+                        </div>
+                        <span class="port-arrow">↗</span>
+                    </div>
+                </a>
+
+                <a href="odoo-casestudy.html" class="portfolio-row">
+                    <div class="port-left-group">
+                        <div class="port-title-wrapper">
+                            <span class="port-num">02</span>
+                            <h3 class="port-title">Odoo ERP Implementation</h3>
+                        </div>
+                        <p class="port-tags">ERP Consultant • Business Process • SDLC</p>
+                    </div>
+                    <div class="port-right-group">
+                        <div class="inline-img-wrapper">
+                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Odoo-Thumbnail.png" alt="Odoo ERP Project">
+                        </div>
+                        <span class="port-arrow">↗</span>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1vWhIErpYwG-G3h06dMKj5joi-f1TGrDr?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
+                    <div class="port-left-group">
+                        <div class="port-title-wrapper">
+                            <span class="port-num">03</span>
+                            <h3 class="port-title">Sales Analytics Dashboard</h3>
+                        </div>
+                        <p class="port-tags">Excel Macro VBA • Data Analysis • KarirNex Bootcamp</p>
+                    </div>
+                    <div class="port-right-group">
+                        <div class="inline-img-wrapper">
+                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Excel.png" alt="Excel VBA Project">
+                        </div>
+                        <span class="port-arrow">↗</span>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/18TMK7HP0Unwxg87zrQIVO9rIEx_W7OIk?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
+                    <div class="port-left-group">
+                        <div class="port-title-wrapper">
+                            <span class="port-num">04</span>
+                            <h3 class="port-title">Sales Data Visualization</h3>
+                        </div>
+                        <p class="port-tags">Tableau • Business Intelligence • Personal Project</p>
+                    </div>
+                    <div class="port-right-group">
+                        <div class="inline-img-wrapper">
+                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Dashboard Tableau.png" alt="Tableau Visualization Project">
+                        </div>
+                        <span class="port-arrow">↗</span>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1gJli-saHCsPOgCBIoISgX80z53Vi5d3z?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
+                    <div class="port-left-group">
+                        <div class="port-title-wrapper">
+                            <span class="port-num">05</span>
+                            <h3 class="port-title">ASEAN SocioEconomic Dashboard</h3>
+                        </div>
+                        <p class="port-tags">SAP Analytics Cloud • Predictive • UN-SDGs</p>
+                    </div>
+                    <div class="port-right-group">
+                        <div class="inline-img-wrapper">
+                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/SAP AC.png" alt="SAP Dashboard Project">
+                        </div>
+                        <span class="port-arrow">↗</span>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1pMXppqR6J1KGE68wlVZBjxo4x7BthRqc?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
+                    <div class="port-left-group">
+                        <div class="port-title-wrapper">
+                            <span class="port-num">06</span>
+                            <h3 class="port-title">Student Directory Mobile App</h3>
+                        </div>
+                        <p class="port-tags">React Native • Figma • UI/UX</p>
+                    </div>
+                    <div class="port-right-group">
+                        <div class="inline-img-wrapper">
+                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Splash-Screen-React.jpg" alt="React Native App">
+                        </div>
+                        <span class="port-arrow">↗</span>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/18yBzPiCPQoeen89zCsS5WmX6CsIQY3Dj?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
+                    <div class="port-left-group">
+                        <div class="port-title-wrapper">
+                            <span class="port-num">07</span>
+                            <h3 class="port-title">Console Rental System Design</h3>
+                        </div>
+                        <p class="port-tags">System Analysis • OOAD • UML</p>
+                    </div>
+                    <div class="port-right-group">
+                        <div class="inline-img-wrapper">
+                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Console.png" alt="OOAD Project">
+                        </div>
+                        <span class="port-arrow">↗</span>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1CFxZU8jh6CRHiEDkZTJFdUZa_HbZFmdo?usp=sharing" class="portfolio-row" target="_blank" rel="noopener noreferrer">
+                    <div class="port-left-group">
+                        <div class="port-title-wrapper">
+                            <span class="port-num">08</span>
+                            <h3 class="port-title">Visual Design Archive</h3>
+                        </div>
+                        <p class="port-tags">Poster • Identity • Apparel • Branding</p>
+                    </div>
+                    <div class="port-right-group">
+                        <div class="inline-img-wrapper">
+                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Denim Jacket.png" alt="Visual Design Archive">
+                        </div>
+                        <span class="port-arrow">↗</span>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1rnY4oyf9PXtcWC4F1KJVIhxR0nbzg22j?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
+                    <div class="port-left-group">
+                        <div class="port-title-wrapper">
+                            <span class="port-num">09</span>
+                            <h3 class="port-title">Multimedia Production SDN 88</h3>
+                        </div>
+                        <p class="port-tags">Content Creation • Video Editing • Storyboard • Multimedia Production</p>
+                    </div>
+                    <div class="port-right-group">
+                        <div class="inline-img-wrapper">
+                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/MPLS.jpeg" alt="SDN 88 Video Project">
+                        </div>
+                        <span class="port-arrow">↗</span>
+                    </div>
+                </a>
+
+            </div>
+
+            <h2 style="margin-top: 80px;" class="reveal-base reveal-stomp">RESEARCH &amp; PUBLICATIONS</h2>
+            <div class="research-item">
+                <h3>Human Computer Interaction Design in Web Based Warehouse Management Systems</h3>
+                <p><strong>Method Used:</strong> Task Centered System Design (TCSD).</p>
+                <a href="https://ejournal.ikado.ac.id/index.php/teknika/article/view/1375" class="btn-secondary" target="_blank" rel="noopener noreferrer">View Published Journal ↗</a>
+            </div>
+            <div class="research-item">
+                <h3>Deepseek Sentiment Analysis Based on Google Play Store Reviews Using Naive Bayes Method</h3>
+                <p><strong>Method Used:</strong> Sentiment Analysis.</p>
+                <a href="https://ojs.stmik-banjarbaru.ac.id/index.php/jutisi/article/view/2778" class="btn-secondary" target="_blank" rel="noopener noreferrer">View Published Journal ↗</a>
+            </div>
+            <div class="research-item">
+                <h3>Comparison of K-Means, K-Medoid, and DBSCAN for Clustering Quality of Life</h3>
+                <p><strong>Method Used:</strong> Comparative analysis of clustering algorithms.</p>
+                <a href="https://ejournal.itn.ac.id/index.php/jati/article/view/13916" class="btn-secondary" target="_blank" rel="noopener noreferrer">View Published Journal ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiences-section" class="section-padding">
+        <div class="container">
+            <h2 class="reveal-base reveal-slide-side">PROFESSIONAL &amp; LEADERSHIP EXPERIENCE</h2>
+            <div class="experience-list">
+                
+                <div class="exp-row">
+                    <div class="exp-left" style="width: 100%;">
+                        <span class="exp-date">JUN 2026 — JUL 2026</span>
+                        <h3 class="exp-role">Freelance Content Creator &amp; Video Editor</h3>
+                        <p class="exp-company">SDN 88 PALEMBANG</p>
+                        <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6; opacity: 0.85;">
+                            <li>Produced three sequential video contents: AI-based food campaign, PHBS education, and MPLS event documentation.</li>
+                            <li>Managed the end-to-end production process, including concept creation, storyboarding, visual shooting, and final video editing.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="about-caption">
-                    <span>DIPLOMA IN ELECTRONICS INDUSTRY</span>
-                    <span>STATE POLYTECHNIC OF JAKARTA</span>
+
+                <div class="exp-row">
+                    <div class="exp-left" style="width: 100%;">
+                        <span class="exp-date">DEC 2024 — JAN 2025</span>
+                        <h3 class="exp-role">Warehouse Operations Intern</h3>
+                        <p class="exp-company">PT. TELKOM AKSES</p>
+                        <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6; opacity: 0.85;">
+                            <li>Analyzed warehouse business processes and identified system requirements using Task-Centered System Design (TCSD).</li>
+                            <li>Conducted physical inventory reconciliation (Stock Opname) and monitored daily outbound/inbound material distribution.</li>
+                            <li>Redesigned the Warehouse Management System (WMS) interface to streamline logistics recording and improve operational efficiency.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-row">
+                    <div class="exp-left" style="width: 100%;">
+                        <span class="exp-date">DEC 2023 — DEC 2024</span>
+                        <h3 class="exp-role">Vice Chairman</h3>
+                        <p class="exp-company">HIMSI FASILKOM UNSRI</p>
+                        <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6; opacity: 0.85;">
+                            <li>Assisted in leading overall organizational operations and supervised cross-functional divisions.</li>
+                            <li>Spearheaded strategic planning and annual activity calendar development aligned with organizational goals.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-row">
+                    <div class="exp-left" style="width: 100%;">
+                        <span class="exp-date">OCT 2023 — OCT 2024</span>
+                        <h3 class="exp-role">Creative Design Member</h3>
+                        <p class="exp-company">Google Developer Group on Campus: UNSRI</p>
+                        <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6; opacity: 0.85;">
+                            <li>Designed visual solutions and infographics to effectively communicate complex information for events and social media.</li>
+                            <li>Collaborated with cross-divisional teams to maintain consistent visual branding across all community programs.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-row">
+                    <div class="exp-left" style="width: 100%;">
+                        <span class="exp-date">SEP 2023 — DEC 2024</span>
+                        <h3 class="exp-role">Steering Committee</h3>
+                        <p class="exp-company">Ikatan Bujang Gadis Fasilkom Unsri</p>
+                        <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6; opacity: 0.85;">
+                            <li>Oversaw the Organizer Committee, ensuring all work programs executed in line with strategic goals.</li>
+                            <li>Conducted program evaluations and provided strategic problem-solving support during project execution.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 style="margin-top: 100px; text-align: center; border-bottom: 2px solid var(--text-color); padding-bottom: 20px;" class="reveal-base reveal-flip is-visible">ACADEMIC IMPACT</h2>
+            
+            <div class="impact-brutal-grid">
+                <div class="impact-brutal-item">
+                    <span class="impact-giant-number">3.95</span>
+                    <h3 class="impact-title">CUM LAUDE GPA</h3>
+                    <p class="impact-desc">Excellence in Information Systems studies.</p>
+                </div>
+                <div class="impact-brutal-item">
+                    <span class="impact-giant-number">03</span>
+                    <h3 class="impact-title">PUBLICATIONS</h3>
+                    <p class="impact-desc">Peer-reviewed contributions to HCI, data clustering, and sentiment analysis.</p>
+                </div>
+                <div class="impact-brutal-item">
+                    <span class="impact-giant-number">TOP</span>
+                    <h3 class="impact-title">FINALIST</h3>
+                    <p class="impact-desc">National-level scientific competition recognition.</p>
                 </div>
             </div>
 
-            <div class="about-content reveal-on-scroll">
-                <h2 class="section-title">PROFILE OVERVIEW</h2>
-                <p>Manufacturing professional with over 7 years of experience in production systems and continuous improvement. Proven expertise in supporting production operations through machine inspection systems, implementing both conventional and digital improvement strategies to enhance efficiency and reliability.</p>
-                <p>Strong background in electrical and mechanical design, with advanced skills in data analysis and visualization to drive process optimization.</p>
+            <h2 style="margin-top: 100px; text-align: center;" class="reveal-base reveal-slide-up is-visible">CORE SKILLS &amp; COMPETENCIES</h2>
+            
+            <div class="comp-category" style="margin-top: 50px; margin-bottom: 40px;"> 
+                <h3>System Analysis &amp; ERP</h3>
+                <div class="tags" style="justify-content: center;"> 
+                    <span class="tag">Business Process Modeling</span> 
+                    <span class="tag">System Design (OOAD/UML)</span> 
+                    <span class="tag">Warehouse Operations (WMS)</span> 
+                    <span class="tag">ERP Implementations</span> 
+                </div> 
+            </div> 
 
-                <div class="education-box">
-                    <h3><i class="fas fa-graduation-cap"></i> EDUCATION & CREDENTIALS</h3>
-                    <ul>
+            <div class="comp-category" style="margin-bottom: 40px;"> 
+                <h3>Data Analytics &amp; BI</h3>
+                <div class="tags" style="justify-content: center;"> 
+                    <span class="tag">SAP Analytics Cloud</span> 
+                    <span class="tag">Tableau &amp; Power BI</span> 
+                    <span class="tag">Python &amp; Gen AI</span> 
+                    <span class="tag">Macro VBA Excel</span>
+                    <span class="tag">Data Quality Validation</span>  
+                </div> 
+            </div>
+
+            <div class="comp-category" style="margin-bottom: 40px;"> 
+                <h3>HCI &amp; Visual Design</h3>
+                <div class="tags" style="justify-content: center;"> 
+                    <span class="tag">UX/UI Prototyping (Figma)</span> 
+                    <span class="tag">React Native (Front-End)</span> 
+                    <span class="tag">Task Centered System Design</span> 
+                    <span class="tag">Usability Testing</span> 
+                </div> 
+            </div> 
+
+            <div class="comp-category"> 
+                <h3>Strategy &amp; Leadership</h3>
+                <div class="tags" style="justify-content: center;"> 
+                    <span class="tag">Continuous Improvement (Kaizen)</span> 
+                    <span class="tag">Project Management</span> 
+                    <span class="tag">Cross-divisional Coordination</span> 
+                    <span class="tag">Strategic Planning</span> 
+                </div> 
+            </div>
+
+            <h2 class="cert-section-title reveal-base reveal-stomp">LICENSES &amp; CERTIFICATIONS</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <h3 class="cert-category-title">Data Analytics &amp; BI</h3>
+                    <ul class="cert-list">
                         <li>
-                            <strong>State Polytechnic of Jakarta</strong> — Diploma in Electronics Industry Engineering (Completed 2020 | GPA: 3.76)
+                            <div class="cert-info">
+                                <strong>Microsoft Office Specialist (Excel Expert)</strong>
+                                <span>KarirNex</span>
+                            </div>
+                            <button class="cert-link view-cert-btn" data-cert="Asset/KarirNex.jpg">VIEW ↗</button>
                         </li>
                         <li>
-                            <strong>KOSEN (DENSO Academy)</strong> — Certificate in Manufacture Engineering (Completed 2020 | Score: 86.34)
+                            <div class="cert-info">
+                                <strong>Introduction to Tableau</strong>
+                                <span>SimpliLearn</span>
+                            </div>
+                            <button class="cert-link view-cert-btn" data-cert="Asset/Tableau.jpg">VIEW ↗</button>
+                        </li>
+                        <li>
+                            <div class="cert-info">
+                                <strong>Power BI Data Modelling Basics</strong>
+                                <span>SimpliLearn</span>
+                            </div>
+                            <button class="cert-link view-cert-btn" data-cert="Asset/PowerBI.jpg">VIEW ↗</button>
+                        </li>
+                        <li>
+                            <div class="cert-info">
+                                <strong>Introduction to Data Analytics</strong>
+                                <span>RevoU</span>
+                            </div>
+                            <button class="cert-link view-cert-btn" data-cert="Asset/RevoU.jpg">VIEW ↗</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="cert-card">
+                    <h3 class="cert-category-title">Data Science &amp; AI</h3>
+                    <ul class="cert-list">
+                        <li>
+                            <div class="cert-info">
+                                <strong>Data Science with Microsoft Fabric</strong>
+                                <span>Dicoding Indonesia</span>
+                            </div>
+                            <button class="cert-link view-cert-btn" data-cert="Asset/Fabric.jpg">VIEW ↗</button>
+                        </li>
+                        <li>
+                            <div class="cert-info">
+                                <strong>Python Programming</strong>
+                                <span>Dicoding Indonesia</span>
+                            </div>
+                            <button class="cert-link view-cert-btn" data-cert="Asset/Python.jpg">VIEW ↗</button>
+                        </li>
+                        <li>
+                            <div class="cert-info">
+                                <strong>Generative AI with Microsoft Azure</strong>
+                                <span>Dicoding Indonesia</span>
+                            </div>
+                            <button class="cert-link view-cert-btn" data-cert="Asset/Azure.jpg">VIEW ↗</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="cert-card">
+                    <h3 class="cert-category-title">Professional</h3>
+                    <ul class="cert-list">
+                        <li>
+                            <div class="cert-info">
+                                <strong>TOEFL ITP Prediction (Score: 550)</strong>
+                                <span>Webster English Course</span>
+                            </div>
+                            <button class="cert-link view-cert-btn" data-cert="Asset/TOEFL.jpg">VIEW ↗</button>
+                        </li>
+                        <li>
+                            <div class="cert-info">
+                                <strong>EF SET English Certificate</strong>
+                                <span>C1 Advanced (61/100)</span>
+                            </div>
+                            <button class="cert-link view-cert-btn" data-cert="Asset/EFSET.jpg">VIEW ↗</button>
                         </li>
                     </ul>
                 </div>
@@ -115,269 +464,76 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills-section" class="section-padding">
+    <section id="about-section" class="section-padding" style="background-color: var(--secondary-bg);">
         <div class="container">
-            <h2 class="section-title text-center reveal-on-scroll">CORE SKILLS & COMPETENCIES</h2>
-            <div class="skills-grid">
-                <div class="skill-card card-3d" data-tilt>
-                    <i class="fas fa-microchip skill-icon"></i>
-                    <h3>Automation & Control</h3>
-                    <p>PLC Programming, Middleware Communication Machine, Script Programming, Digitalized System, Electrical Installation.</p>
+            <h1 class="about-title reveal-base reveal-slide-up" id="about-izzan">ABOUT IZZAN</h1>
+            
+            <div class="about-image-wrapper">
+                <div class="about-image-container">
+                    <img src="./Muhammad Izzan Fieldi - Portfolio_files/PTB_0155.jpeg" alt="Izzan Yudisium" class="about-img">
+                    <div class="grain-overlay"></div>
                 </div>
-                <div class="skill-card card-3d" data-tilt>
-                    <i class="fas fa-chart-line skill-icon"></i>
-                    <h3>Process Optimization</h3>
-                    <p>Continuous Improvement (Kaizen), QCC Skill, 5S & Safety Compliance, Cost Reduction Activity, KPI Control.</p>
+                <div class="about-caption">
+                    <span>B.A. IN INFORMATION SYSTEMS</span>
+                    <span>CLASS OF 2026</span>
                 </div>
-                <div class="skill-card card-3d" data-tilt>
-                    <i class="fas fa-database skill-icon"></i>
-                    <h3>Data & Software</h3>
-                    <p>Database System, Data Analysis & Visualization, Microsoft Office Applications, Machine Inspection Systems.</p>
-                </div>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; text-transform: uppercase; line-height: 1.2; margin-bottom: 30px; color: var(--text-color);">
+                    HEYA, I'M IZZAN. A CUM LAUDE INFORMATION SYSTEMS GRADUATE BASED IN PALEMBANG, INDONESIA.
+                </p>
+                <p style="font-size: 1.25rem; line-height: 1.6; color: var(--text-color); opacity: 0.9; margin-bottom: 40px;">
+                    I bridge the gap between complex business processes and data-driven insights. With hands-on experience in ERP inventory control and Human-Computer Interaction research published alongside international collaborators, my approach goes beyond mere aesthetics.
+                </p>
+                <a href="#" id="view-cv-link" class="text-link">VIEW RESUME ↗</a>
             </div>
         </div>
     </section>
 
-    <!-- Work Experience Section -->
-    <section id="experiences-section" class="section-padding">
-        <div class="container">
-            <h2 class="section-title reveal-on-scroll">WORK EXPERIENCE</h2>
-            <div class="timeline">
-                
-                <div class="timeline-item reveal-on-scroll">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content card-3d" data-tilt>
-                        <span class="exp-date">2021 — PRESENT</span>
-                        <h3 class="exp-role">Technician / Einsteller — SP Iridium & Packing Exp.</h3>
-                        <p class="exp-company">PT. DENSO INDONESIA (FAJAR PLANT)</p>
-                        <ul>
-                            <li>Focus on stabilizing line efficiency and preparing system readiness for upcoming automation projects.</li>
-                            <li>Develop new products, control production KPIs, create continuous improvement initiatives, and execute cost-reduction activities.</li>
-                            <li>Maintain and optimize packing process integrity.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal-on-scroll">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content card-3d" data-tilt>
-                        <span class="exp-date">2020 — 2021</span>
-                        <h3 class="exp-role">Production Operator — Spark Plug Iridium</h3>
-                        <p class="exp-company">PT. DENSO INDONESIA (FAJAR PLANT)</p>
-                        <ul>
-                            <li>Mastered and executed SOPs across multiple processes as a Multiskill Operator.</li>
-                            <li>Maintained strict adherence to 5S, safety standards, and 100% quality compliance during daily output generation.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal-on-scroll">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content card-3d" data-tilt>
-                        <span class="exp-date">2019 — 2020</span>
-                        <h3 class="exp-role">Kougyo Senmon / Denso Academy Student</h3>
-                        <p class="exp-company">PT. DENSO INDONESIA (BEKASI PLANT)</p>
-                        <ul>
-                            <li>Completed intensive technical and manufacturing excellence training modeled after the Japanese Kosen system.</li>
-                            <li>Mastered advanced manufacturing concepts, industrial automation, and robotics.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="portfolio-section" class="section-padding">
-        <div class="container">
-            <h2 class="section-title reveal-on-scroll">PROJECT EXPERIENCE</h2>
-            <div class="portfolio-grid">
-                
-                <div class="project-item card-3d" data-tilt>
-                    <div class="project-tag">AI & IoT</div>
-                    <h3>IoT System Machine Learning</h3>
-                    <p>Implemented smart ML algorithms for predictive industrial operations.</p>
-                </div>
-
-                <div class="project-item card-3d" data-tilt>
-                    <div class="project-tag">Digitalization</div>
-                    <h3>E-Dekidaka System</h3>
-                    <p>Real-time production progress monitoring and reporting framework.</p>
-                </div>
-
-                <div class="project-item card-3d" data-tilt>
-                    <div class="project-tag">Quality Control</div>
-                    <h3>3 Point Check System Packing Ir</h3>
-                    <p>Error-proofing quality verification mechanism for packing lines.</p>
-                </div>
-
-                <div class="project-item card-3d" data-tilt>
-                    <div class="project-tag">Inspection</div>
-                    <h3>Camera AI Check & OCR Read Label</h3>
-                    <p>Automated visual inspection using AI OCR for 2T/3T label verification.</p>
-                </div>
-
-                <div class="project-item card-3d" data-tilt>
-                    <div class="project-tag">Industrial IoT</div>
-                    <h3>Traceability System & Un-Lot System</h3>
-                    <p>Complete product tracking system across assembly line operations.</p>
-                </div>
-
-                <div class="project-item card-3d" data-tilt>
-                    <div class="project-tag">Smart Monitoring</div>
-                    <h3>Early Detection & Lifetime Tool System</h3>
-                    <p>Predictive maintenance system monitoring tool health and AP+DN7 metrics.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section id="achievements-section" class="section-padding">
-        <div class="container">
-            <h2 class="section-title reveal-on-scroll text-center">HONORS & ACHIEVEMENTS</h2>
-            <div class="achievements-grid">
-                <div class="achievement-card card-3d" data-tilt>
-                    <span class="achieve-year">2025</span>
-                    <i class="fas fa-trophy achieve-icon"></i>
-                    <h3>Gold Medal ICQ Tokyo Japan</h3>
-                    <p>Gold Medal at the International Conference Quality (ICQ) in Tokyo, Japan.</p>
-                </div>
-                <div class="achievement-card card-3d" data-tilt>
-                    <span class="achieve-year">2024</span>
-                    <i class="fas fa-globe achieve-icon"></i>
-                    <h3>Global Sharing Denso Japan</h3>
-                    <p>Positive appreciation Group QCC in Global Sharing Denso Japan.</p>
-                </div>
-                <div class="achievement-card card-3d" data-tilt>
-                    <span class="achieve-year">2023</span>
-                    <i class="fas fa-medal achieve-icon"></i>
-                    <h3>1st Winner QCC Denso Asia</h3>
-                    <p>1st Winner QCC Denso Regional Asia & The Best & Most SS FY '23.</p>
-                </div>
-                <div class="achievement-card card-3d" data-tilt>
-                    <span class="achieve-year">2022</span>
-                    <i class="fas fa-award achieve-icon"></i>
-                    <h3>1st Winner QCC Denso Indonesia</h3>
-                    <p>1st Winner QCC Denso Indonesia Group & The Best & Most SS FY '22.</p>
-                </div>
-                <div class="achievement-card card-3d" data-tilt>
-                    <span class="achieve-year">2020 - 2021</span>
-                    <i class="fas fa-star achieve-icon"></i>
-                    <h3>SS Awards & Maintenance Skill</h3>
-                    <p>2nd Runner Up Basic Maintenance Skill Competition (2020) & 4th Winner SS AOP (2021).</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="big-footer section-padding">
+    <section id="contact" class="big-footer">
         <div class="container text-center">
-            <h2 class="giant-text reveal-on-scroll">LET'S CONNECT</h2>
-            <p class="contact-sub">Adelia Residence Blok D3, Setu, Bekasi | 085 225 426 995</p>
+            <h2 class="giant-text reveal-base reveal-slide-side">LET'S TALK</h2>
             <div class="footer-links">
-                <a href="mailto:m.reizalfani@gmail.com">EMAIL</a>
-                <a href="https://www.linkedin.com/in/muhammad-reizalfani-baharudin" target="_blank">LINKEDIN</a>
-                <a href="tel:085225426995">WHATSAPP</a>
+                <a href="https://www.instagram.com/izzanhanafi_" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+                <a href="mailto:muhammadizzanfieldi@gmail.com">EMAIL</a>
+                <a href="https://www.linkedin.com/in/muhammadizzanfieldi" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
             </div>
             <div class="footer-bottom">
-                <p>BEKASI, INDONESIA</p>
-                <p>© 2026 MUHAMMAD REIZALFANI BAHARUDIN</p>
-                <a href="#hero" id="back-to-top">BACK TO TOP ↑</a>
+                <p>PALEMBANG, ID</p>
+                <p>© 2026 M. IZZAN FIELDI</p>
+                <a href="#hero">BACK TO TOP ↑</a>
             </div>
         </div>
     </section>
 
-    <!-- Modal Complete CV -->
+    <!-- Modals -->
     <div id="cv-modal" class="cv-modal">
         <div class="modal-overlay" id="modal-overlay"></div>
-        <button class="close-btn" id="close-cv-btn">&times;</button>
+        <button class="close-btn" id="close-cv">×</button>
         <div class="modal-content">
             <div class="cv-paper-frame">
                 <div class="cv-html-paper">
                     <div class="cv-header">
-                        <h1>MUHAMMAD REIZALFANI BAHARUDIN</h1>
-                        <p>Adelia Residence Blok D3, Setu, Bekasi | 085 225 426 995 | <a href="mailto:m.reizalfani@gmail.com">m.reizalfani@gmail.com</a></p>
-                        <p><a href="https://www.linkedin.com/in/muhammad-reizalfani-baharudin" target="_blank">LinkedIn Profile</a></p>
-                    </div>
-                    
-                    <div class="cv-body">
-                        <div class="cv-section">
-                            <h2>PROFILE</h2>
-                            <p>Manufacturing professional with over 7 years of experience in production systems and continuous improvement. Proven expertise in supporting production operations through machine inspection systems, implementing both conventional and digital improvement strategies to enhance efficiency and reliability. Strong background in electrical and mechanical design, with advanced skills in data analysis and visualization to drive process optimization. Adept at bridging technical knowledge with leadership and communication abilities, ensuring effective collaboration across teams.</p>
-                        </div>
-
-                        <div class="cv-section">
-                            <h2>WORK EXPERIENCE</h2>
-                            <div class="cv-item">
-                                <div class="cv-item-header">
-                                    <strong>PT Denso Indonesia Fajar Plant — Technician / Einsteller</strong>
-                                    <span>2021 — Present</span>
-                                </div>
-                                <ul>
-                                    <li>Stabilizing line efficiency and preparing system readiness for upcoming automation projects.</li>
-                                    <li>Develop New product, Control KPI Production, Create Improvement, Cost Reduction Activity, Maintain packing process.</li>
-                                </ul>
-                            </div>
-                            <div class="cv-item">
-                                <div class="cv-item-header">
-                                    <strong>PT Denso Indonesia Fajar Plant — Production Operator (Spark Plug Iridium)</strong>
-                                    <span>2020 — 2021</span>
-                                </div>
-                                <ul>
-                                    <li>Executed SOPs across multiple production processes as a Multiskill Operator.</li>
-                                    <li>Maintained 5S, safety standards, and 100% quality compliance.</li>
-                                </ul>
-                            </div>
-                            <div class="cv-item">
-                                <div class="cv-item-header">
-                                    <strong>PT Denso Indonesia Bekasi Plant — Kougyo Senmon / Denso Academy</strong>
-                                    <span>2019 — 2020</span>
-                                </div>
-                                <ul>
-                                    <li>Completed technical training program modeled after Japanese Kosen system, mastering automation and robotics.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="cv-section">
-                            <h2>EDUCATION</h2>
-                            <p><strong>State Polytechnic of Jakarta</strong> — Diploma in Electronics Industry Engineering (Completed 2020 | GPA: 3.76)</p>
-                            <p><strong>KOSEN (DENSO Academy)</strong> — Certificate in Manufacture Engineering (Completed 2020 | Score: 86.34)</p>
-                        </div>
-
-                        <div class="cv-section">
-                            <h2>PROJECT EXPERIENCE</h2>
-                            <p>IoT System Machine Learning | E-Dekidaka System | 3 Point Check System Packing Ir | Un-Lot System | Traceability System | Camera OCR Read Label 2T/3T | Camera AI Check | Weight Scale Confirmation | SOS Project | Early Detection System | Control Lifetime Tool System | AP+DN7 Monitoring System</p>
-                        </div>
-
-                        <div class="cv-section">
-                            <h2>ACHIEVEMENTS</h2>
-                            <ul>
-                                <li>2025 | Gold Medal International Conference Quality (ICQ) in Tokyo Japan</li>
-                                <li>2024 | Positive appreciation Group QCC In Global Sharing Denso Japan</li>
-                                <li>2023 | The Best & Most SS FY '23, 1st Winner QCC Denso Regional Asia</li>
-                                <li>2022 | The Best & Most SS FY '22, 1st Winner QCC Denso Indonesia Group</li>
-                                <li>2021 | The Best & Most SS FY '21, 4th Winner Presentation SS AOP</li>
-                                <li>2020 | The Best & Most SS FY '20, 2nd Runner UP Basic Maintenance Skill Competition</li>
-                            </ul>
-                        </div>
-
-                        <div class="cv-section">
-                            <h2>SKILLS</h2>
-                            <p>PLC Programming | Electrical Installation | Script Programming | Digitalized System | Communication Skill | QCC Skill | Microsoft Office Application | Database System | Middleware Communication Machine</p>
-                        </div>
+                        <h1>MUHAMMAD IZZAN FIELDI</h1>
+                        <p>Palembang, Indonesia | 081379153250 | <a href="mailto:muhammadizzanfieldi@gmail.com">muhammadizzanfieldi@gmail.com</a></p>
                     </div>
                 </div>
+            </div>
+            <div class="cv-footer-actions">
+                <a href="./Asset/CV_Muhammad_Izzan_Fieldi_2026.pdf" download="" class="btn">DOWNLOAD PDF VERSION</a>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="script.js"></script>
+    <div id="cert-modal" class="cv-modal">
+        <div class="modal-overlay" id="cert-modal-overlay"></div>
+        <button class="close-btn" id="close-cert-btn">×</button>
+        <div class="modal-content" style="background: transparent; box-shadow: none; border: none; padding: 0;">
+            <img id="cert-preview-img" src="" alt="Certificate Preview">
+        </div>
+    </div>
+
+    <script src="./Muhammad Izzan Fieldi - Portfolio_files/script.js.download"></script>
 </body>
 </html>
