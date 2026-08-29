@@ -3,1005 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Reizalfani Baharudin - Portfolio</title>
-
-    <!-- Google Fonts & Font Awesome Icons -->
+    <title>Muhammad Reizalfani Baharudin - Portfolio & CV</title>
+    
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* CSS VARIABLES & THEMING SYSTEM */
-        :root {
-            --bg-main: #EAE6DF;
-            --bg-card: #DFDAD1;
-            --bg-dark: #12161A;
-            --text-dark: #12161A;
-            --text-muted: #5A626A;
-            --accent-blue: #2A4365;
-            --border-dark: #12161A;
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-sans: 'Plus Jakarta Sans', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        [data-theme="dark"] {
-            --bg-main: #12161A;
-            --bg-card: #1C2228;
-            --bg-dark: #EAE6DF;
-            --text-dark: #EAE6DF;
-            --text-muted: #94A3B8;
-            --accent-blue: #63B3ED;
-            --border-dark: #EAE6DF;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-sans);
-            background-color: var(--bg-main);
-            color: var(--text-dark);
-            line-height: 1.5;
-            overflow-x: hidden;
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
-
-        /* 1. INITIAL LOADER SCREEN */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--bg-dark);
-            color: var(--bg-main);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        .loader-content {
-            font-family: var(--font-display);
-            font-size: clamp(80px, 15vw, 160px);
-            font-weight: 900;
-        }
-
-        /* 2. FLOATING NAVBAR & INTERACTION */
-        .navbar-wrapper {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1100px;
-            z-index: 1000;
-        }
-
-        .navbar {
-            background: rgba(234, 230, 223, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(18, 22, 26, 0.15);
-            border-radius: 50px;
-            padding: 12px 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            font-weight: 700;
-            transition: var(--transition-smooth);
-        }
-
-        [data-theme="dark"] .navbar {
-            background: rgba(18, 22, 26, 0.75);
-            border-color: rgba(234, 230, 223, 0.15);
-        }
-
-        .nav-location {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-brand {
-            font-family: var(--font-display);
-            font-size: 22px;
-            letter-spacing: 1px;
-            color: var(--text-dark);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: 800;
-            font-size: 12px;
-            letter-spacing: 1px;
-            position: relative;
-            padding-bottom: 2px;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--text-dark);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .theme-toggle-btn {
-            background: none;
-            border: 1.5px solid var(--text-dark);
-            border-radius: 50%;
-            width: 34px;
-            height: 34px;
-            cursor: pointer;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: var(--transition-smooth);
-        }
-
-        .theme-toggle-btn:hover {
-            background-color: var(--text-dark);
-            color: var(--bg-main);
-        }
-
-        /* 3. HERO SECTION WITH CHARACTER REVEAL & SLIDER */
-        .wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 160px 20px 60px;
-        }
-
-        .hero-section {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .giant-title {
-            font-family: var(--font-display);
-            font-size: clamp(55px, 11vw, 140px);
-            line-height: 0.85;
-            letter-spacing: 2px;
-            color: var(--text-dark);
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            user-select: none;
-        }
-
-        .giant-title span.char {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(40px) rotate(5deg);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
-        }
-
-        .giant-title span.char.active {
-            opacity: 1;
-            transform: translateY(0) rotate(0deg);
-        }
-
-        .hero-subtitle-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-top: 2px solid var(--text-dark);
-            padding-top: 15px;
-            overflow: hidden;
-        }
-
-        /* VERTICAL ROLE SLIDER */
-        .role-slider {
-            height: 24px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .role-list {
-            display: flex;
-            flex-direction: column;
-            animation: slideRoles 12s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
-        }
-
-        .role-list span {
-            height: 24px;
-            line-height: 24px;
-            color: var(--accent-blue);
-            font-weight: 800;
-            text-align: right;
-        }
-
-        @keyframes slideRoles {
-            0%, 20% { transform: translateY(0); }
-            25%, 45% { transform: translateY(-24px); }
-            50%, 70% { transform: translateY(-48px); }
-            75%, 95% { transform: translateY(-72px); }
-            100% { transform: translateY(0); }
-        }
-
-        /* 4. INFINITE MARQUEE */
-        .marquee-container {
-            background: var(--text-dark);
-            color: var(--bg-main);
-            padding: 16px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            margin: 40px 0 80px;
-        }
-
-        .marquee-content {
-            display: inline-flex;
-            gap: 20px;
-            animation: marquee 25s linear infinite;
-            font-family: var(--font-display);
-            font-size: 26px;
-            letter-spacing: 2px;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* 5. INTERACTIVE SECTION HEADERS & REVEAL ANIMATION */
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-heading {
-            font-family: var(--font-display);
-            font-size: clamp(40px, 6vw, 75px);
-            line-height: 1;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            border-bottom: 2px solid var(--text-dark);
-            padding-bottom: 10px;
-        }
-
-        /* 6. FEATURED WORKS (HOVER IMAGE PREVIEW & TILT) */
-        .project-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-bottom: 100px;
-        }
-
-        .project-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px;
-            border: 1px solid rgba(18, 22, 26, 0.15);
-            background-color: var(--bg-card);
-            text-decoration: none;
-            color: inherit;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        [data-theme="dark"] .project-item {
-            border-color: rgba(234, 230, 223, 0.15);
-        }
-
-        .project-item:hover {
-            border-color: var(--text-dark);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-
-        .project-num {
-            font-family: var(--font-display);
-            font-size: 36px;
-            color: var(--text-muted);
-            margin-right: 30px;
-        }
-
-        .project-info {
-            flex: 1;
-        }
-
-        .project-title-text {
-            font-family: var(--font-display);
-            font-size: clamp(26px, 3.5vw, 44px);
-            line-height: 1.05;
-        }
-
-        .project-sub {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--accent-blue);
-            letter-spacing: 1px;
-            margin-top: 6px;
-            text-transform: uppercase;
-        }
-
-        .project-arrow {
-            font-size: 24px;
-            transition: transform 0.3s ease;
-        }
-
-        .project-item:hover .project-arrow {
-            transform: translate(6px, -6px);
-        }
-
-        /* 7. IMPACT STATS GRID */
-        .stats-grid-modern {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 100px;
-        }
-
-        .stat-box {
-            border: 2px solid var(--border-dark);
-            padding: 40px 20px;
-            text-align: center;
-            background: var(--bg-card);
-            border-radius: 6px;
-            transition: var(--transition-smooth);
-        }
-
-        .stat-box:hover {
-            transform: translateY(-8px);
-        }
-
-        .stat-big-num {
-            font-family: var(--font-display);
-            font-size: 72px;
-            line-height: 1;
-            color: var(--accent-blue);
-        }
-
-        .stat-box-title {
-            font-weight: 800;
-            font-size: 14px;
-            text-transform: uppercase;
-            margin-top: 10px;
-        }
-
-        .stat-box-desc {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* 8. EXPERIENCES TIMELINE */
-        .experience-card {
-            background: var(--bg-card);
-            border-left: 4px solid var(--accent-blue);
-            padding: 30px;
-            margin-bottom: 24px;
-            border-radius: 4px;
-            transition: var(--transition-smooth);
-        }
-
-        .experience-card:hover {
-            transform: translateX(8px);
-        }
-
-        .exp-date {
-            font-family: var(--font-display);
-            font-size: 22px;
-            color: var(--accent-blue);
-            letter-spacing: 1px;
-        }
-
-        .exp-role {
-            font-family: var(--font-display);
-            font-size: 32px;
-            line-height: 1.1;
-            margin: 4px 0;
-        }
-
-        .exp-company {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        /* 9. SKILL TAGS */
-        .skills-wrapper {
-            margin-bottom: 100px;
-        }
-
-        .skill-group-title {
-            font-weight: 800;
-            font-size: 13px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--accent-blue);
-            margin: 30px 0 14px;
-            border-bottom: 1px dashed var(--text-muted);
-            padding-bottom: 6px;
-        }
-
-        .tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tag-item {
-            border: 1.5px solid var(--text-dark);
-            padding: 8px 18px;
-            border-radius: 40px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            background: transparent;
-            transition: var(--transition-smooth);
-            cursor: default;
-        }
-
-        .tag-item:hover {
-            background-color: var(--text-dark);
-            color: var(--bg-main);
-        }
-
-        /* 10. CV MODAL SYSTEM */
-        .cv-trigger-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 14px 32px;
-            background-color: var(--text-dark);
-            color: var(--bg-main);
-            font-family: var(--font-sans);
-            font-weight: 800;
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: 2px solid var(--text-dark);
-            border-radius: 50px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-
-        .cv-trigger-btn:hover {
-            background-color: transparent;
-            color: var(--text-dark);
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(18, 22, 26, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-container {
-            background: var(--bg-main);
-            color: var(--text-dark);
-            width: 90%;
-            max-width: 800px;
-            max-height: 85vh;
-            border-radius: 12px;
-            padding: 40px;
-            overflow-y: auto;
-            position: relative;
-            transform: translateY(30px) scale(0.95);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 2px solid var(--border-dark);
-        }
-
-        .modal-overlay.active .modal-container {
-            transform: translateY(0) scale(1);
-        }
-
-        .close-modal-btn {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            background: none;
-            border: none;
-            font-size: 30px;
-            font-weight: 700;
-            cursor: pointer;
-            color: var(--text-dark);
-        }
-
-        .modal-header {
-            border-bottom: 2px solid var(--text-dark);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .modal-header h2 {
-            font-family: var(--font-display);
-            font-size: 36px;
-        }
-
-        .modal-section {
-            margin-bottom: 20px;
-        }
-
-        .modal-section h3 {
-            font-weight: 800;
-            font-size: 14px;
-            text-transform: uppercase;
-            color: var(--accent-blue);
-            margin-bottom: 8px;
-        }
-
-        .modal-section p, .modal-section ul {
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        .modal-section ul {
-            padding-left: 18px;
-        }
-
-        /* 11. BIG FOOTER */
-        .dark-footer {
-            background: var(--bg-dark);
-            color: var(--bg-main);
-            padding: 80px 20px 40px;
-            text-align: center;
-            margin-top: 60px;
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
-
-        .footer-big-text {
-            font-family: var(--font-display);
-            font-size: clamp(70px, 14vw, 170px);
-            line-height: 0.85;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            user-select: none;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--bg-main);
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-
-        .footer-links a:hover {
-            opacity: 0.6;
-        }
-
-        .footer-bottom {
-            font-size: 11px;
-            font-family: var(--font-mono);
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            max-width: 1100px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .back-to-top {
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-subtitle-flex { flex-direction: column; gap: 10px; text-align: center; }
-            .role-list span { text-align: center; }
-            .footer-bottom { flex-direction: column; text-align: center; align-items: center; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-theme">
 
-    <!-- 1. LOADING SCREEN INTERACTION -->
+    <!-- 3D Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Page Loader -->
     <div id="loader">
         <div class="loader-content">
-            <span id="counter">0</span>
+            <div class="spinner-3d"></div>
+            <span id="counter">0</span>%
         </div>
     </div>
 
-    <!-- 2. FIXED FLOATING NAVIGATION BAR -->
-    <div class="navbar-wrapper">
-        <nav class="navbar">
-            <div class="nav-location">BEKASI, ID • <span id="live-clock">00:00:00</span></div>
-            <a href="#" class="nav-brand">M. REIZALFANI BAHARUDIN</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#works">Portfolio</a></li>
-                <li><a href="#experiences">Experiences</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <!-- Header Navigation -->
+    <header class="jas-header" id="header">
+        <nav class="container">
+            <div class="location">
+                <span>BEKASI, ID</span> • <span id="live-time">00:00:00</span>
+            </div>
+            <a href="#hero" class="logo">
+                <span class="logo-text">MRB<span>.3D</span></span>
+            </a>
+
+            <ul class="jas-nav" id="nav-menu">
+                <li><a href="#hero" data-text="HOME">HOME</a></li>
+                <li><a href="#about-section" data-text="ABOUT">ABOUT</a></li>
+                <li><a href="#experiences-section" data-text="EXPERIENCE">EXPERIENCE</a></li>
+                <li><a href="#portfolio-section" data-text="PROJECTS">PROJECTS</a></li>
+                <li><a href="#achievements-section" data-text="AWARDS">AWARDS</a></li>
             </ul>
+            
             <div class="nav-actions">
-                <button class="theme-toggle-btn" id="theme-toggle" title="Switch Theme">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </nav>
-    </div>
+    </header>
 
-    <div class="wrapper">
-        <!-- 3. HERO SECTION WITH CHARACTER-BY-CHARACTER ANIMATION & ROLE SLIDER -->
-        <section class="hero-section" id="about">
-            <h1 class="giant-title" id="interactive-name">REIZALFANI</h1>
-            <div class="hero-subtitle-flex">
-                <span>I AM A</span>
-                <div class="role-slider">
-                    <div class="role-list">
-                        <span>CONTINUOUS IMPROVEMENT ENGINEER</span>
-                        <span>PRODUCTION LEADER</span>
-                        <span>INDUSTRIAL AUTOMATION SPECIALIST</span>
-                        <span>IOT & SYSTEM INTEGRATOR</span>
-                    </div>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-container container">
+            <div class="hero-3d-card card-3d" data-tilt>
+                <p class="hero-subtitle">PRODUCTION TECHNICIAN & INDUSTRIAL AUTOMATION</p>
+                <h1 class="hero-name" id="interactive-name">
+                    M. REIZALFANI BAHARUDIN
+                </h1>
+                <p class="hero-desc">Manufacturing professional with over 7 years of experience in continuous improvement, digitalization, machine inspection systems, and IoT solutions.</p>
+                <div class="hero-cta">
+                    <button class="btn-primary-3d" id="open-cv-btn">VIEW FULL CV & RESUME ↗</button>
+                    <a href="#contact" class="btn-secondary-3d">GET IN TOUCH</a>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <!-- 4. CONTINUOUS MARQUEE RUNNER -->
-    <div class="marquee-container">
+    <!-- Marquee Banner -->
+    <div class="marquee">
         <div class="marquee-content">
-            PLC PROGRAMMING • KAIZEN & QCC SKILL • INDUSTRIAL AUTOMATION • CAMERA AI CHECK & OCR • DIGITALIZED SYSTEM & IOT • ELECTRICAL INSTALLATION • 5S & SAFETY STANDARD •
-            PLC PROGRAMMING • KAIZEN & QCC SKILL • INDUSTRIAL AUTOMATION • CAMERA AI CHECK & OCR • DIGITALIZED SYSTEM & IOT • ELECTRICAL INSTALLATION • 5S & SAFETY STANDARD •
+            <span>PLC PROGRAMMING • DIGITALIZED SYSTEMS • IOT MACHINE LEARNING • TRACEABILITY • QCC EXPERT • AUTOMATION • </span>
+            <span>PLC PROGRAMMING • DIGITALIZED SYSTEMS • IOT MACHINE LEARNING • TRACEABILITY • QCC EXPERT • AUTOMATION • </span>
         </div>
     </div>
 
-    <div class="wrapper">
-        <!-- 5. FEATURED WORKS WITH INTERACTIVE TILT & HOVER CARDS -->
-        <section id="works" class="reveal-on-scroll">
-            <h2 class="section-heading">FEATURED WORKS</h2>
-            <div class="project-list">
+    <!-- About Section -->
+    <section id="about-section" class="section-padding">
+        <div class="container grid-2col">
+            <div class="about-image-wrapper card-3d" data-tilt>
+                <div class="about-image-container">
+                    <img src="./assets/profile.jpg" alt="Muhammad Reizalfani Baharudin" class="about-img">
+                    <div class="grain-overlay"></div>
+                </div>
+                <div class="about-caption">
+                    <span>DIPLOMA IN ELECTRONICS INDUSTRY</span>
+                    <span>STATE POLYTECHNIC OF JAKARTA</span>
+                </div>
+            </div>
+
+            <div class="about-content reveal-on-scroll">
+                <h2 class="section-title">PROFILE OVERVIEW</h2>
+                <p>Manufacturing professional with over 7 years of experience in production systems and continuous improvement. Proven expertise in supporting production operations through machine inspection systems, implementing both conventional and digital improvement strategies to enhance efficiency and reliability.</p>
+                <p>Strong background in electrical and mechanical design, with advanced skills in data analysis and visualization to drive process optimization.</p>
+
+                <div class="education-box">
+                    <h3><i class="fas fa-graduation-cap"></i> EDUCATION & CREDENTIALS</h3>
+                    <ul>
+                        <li>
+                            <strong>State Polytechnic of Jakarta</strong> — Diploma in Electronics Industry Engineering (Completed 2020 | GPA: 3.76)
+                        </li>
+                        <li>
+                            <strong>KOSEN (DENSO Academy)</strong> — Certificate in Manufacture Engineering (Completed 2020 | Score: 86.34)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills-section" class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center reveal-on-scroll">CORE SKILLS & COMPETENCIES</h2>
+            <div class="skills-grid">
+                <div class="skill-card card-3d" data-tilt>
+                    <i class="fas fa-microchip skill-icon"></i>
+                    <h3>Automation & Control</h3>
+                    <p>PLC Programming, Middleware Communication Machine, Script Programming, Digitalized System, Electrical Installation.</p>
+                </div>
+                <div class="skill-card card-3d" data-tilt>
+                    <i class="fas fa-chart-line skill-icon"></i>
+                    <h3>Process Optimization</h3>
+                    <p>Continuous Improvement (Kaizen), QCC Skill, 5S & Safety Compliance, Cost Reduction Activity, KPI Control.</p>
+                </div>
+                <div class="skill-card card-3d" data-tilt>
+                    <i class="fas fa-database skill-icon"></i>
+                    <h3>Data & Software</h3>
+                    <p>Database System, Data Analysis & Visualization, Microsoft Office Applications, Machine Inspection Systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experiences-section" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal-on-scroll">WORK EXPERIENCE</h2>
+            <div class="timeline">
                 
-                <a href="#works" class="project-item">
-                    <span class="project-num">01</span>
-                    <div class="project-info">
-                        <h3 class="project-title-text">E-DEKIDAKA & EARLY DETECTION SYSTEM</h3>
-                        <div class="project-sub">PLC • IOT SYSTEM • MACHINE LEARNING</div>
+                <div class="timeline-item reveal-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content card-3d" data-tilt>
+                        <span class="exp-date">2021 — PRESENT</span>
+                        <h3 class="exp-role">Technician / Einsteller — SP Iridium & Packing Exp.</h3>
+                        <p class="exp-company">PT. DENSO INDONESIA (FAJAR PLANT)</p>
+                        <ul>
+                            <li>Focus on stabilizing line efficiency and preparing system readiness for upcoming automation projects.</li>
+                            <li>Develop new products, control production KPIs, create continuous improvement initiatives, and execute cost-reduction activities.</li>
+                            <li>Maintain and optimize packing process integrity.</li>
+                        </ul>
                     </div>
-                    <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-                </a>
+                </div>
 
-                <a href="#works" class="project-item">
-                    <span class="project-num">02</span>
-                    <div class="project-info">
-                        <h3 class="project-title-text">CAMERA OCR READ LABEL & WEIGHT SCALE CHECK</h3>
-                        <div class="project-sub">CAMERA AI • OCR READ • PACKING EXP</div>
+                <div class="timeline-item reveal-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content card-3d" data-tilt>
+                        <span class="exp-date">2020 — 2021</span>
+                        <h3 class="exp-role">Production Operator — Spark Plug Iridium</h3>
+                        <p class="exp-company">PT. DENSO INDONESIA (FAJAR PLANT)</p>
+                        <ul>
+                            <li>Mastered and executed SOPs across multiple processes as a Multiskill Operator.</li>
+                            <li>Maintained strict adherence to 5S, safety standards, and 100% quality compliance during daily output generation.</li>
+                        </ul>
                     </div>
-                    <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-                </a>
+                </div>
 
-                <a href="#works" class="project-item">
-                    <span class="project-num">03</span>
-                    <div class="project-info">
-                        <h3 class="project-title-text">TRACEABILITY & LIFETIME TOOL CONTROL SYSTEM</h3>
-                        <div class="project-sub">MIDDLEWARE • DATABASE SYSTEM • AP+DN7</div>
+                <div class="timeline-item reveal-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content card-3d" data-tilt>
+                        <span class="exp-date">2019 — 2020</span>
+                        <h3 class="exp-role">Kougyo Senmon / Denso Academy Student</h3>
+                        <p class="exp-company">PT. DENSO INDONESIA (BEKASI PLANT)</p>
+                        <ul>
+                            <li>Completed intensive technical and manufacturing excellence training modeled after the Japanese Kosen system.</li>
+                            <li>Mastered advanced manufacturing concepts, industrial automation, and robotics.</li>
+                        </ul>
                     </div>
-                    <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-                </a>
-
-            </div>
-        </section>
-
-        <!-- 6. ACADEMIC & CAREER HIGHLIGHT STATS -->
-        <section class="reveal-on-scroll">
-            <h2 class="section-heading">ACADEMIC & CAREER IMPACT</h2>
-            <div class="stats-grid-modern">
-                <div class="stat-box">
-                    <div class="stat-big-num">7+ YRS</div>
-                    <div class="stat-box-title">Manufacturing Experience</div>
-                    <div class="stat-box-desc">PT Denso Indonesia</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-big-num">GOLD</div>
-                    <div class="stat-box-title">ICQ Tokyo Japan (2025)</div>
-                    <div class="stat-box-desc">International Quality Award</div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="portfolio-section" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal-on-scroll">PROJECT EXPERIENCE</h2>
+            <div class="portfolio-grid">
+                
+                <div class="project-item card-3d" data-tilt>
+                    <div class="project-tag">AI & IoT</div>
+                    <h3>IoT System Machine Learning</h3>
+                    <p>Implemented smart ML algorithms for predictive industrial operations.</p>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-big-num">3.76</div>
-                    <div class="stat-box-title">IPK Electronics</div>
-                    <div class="stat-box-desc">Politeknik Negeri Jakarta</div>
+
+                <div class="project-item card-3d" data-tilt>
+                    <div class="project-tag">Digitalization</div>
+                    <h3>E-Dekidaka System</h3>
+                    <p>Real-time production progress monitoring and reporting framework.</p>
+                </div>
+
+                <div class="project-item card-3d" data-tilt>
+                    <div class="project-tag">Quality Control</div>
+                    <h3>3 Point Check System Packing Ir</h3>
+                    <p>Error-proofing quality verification mechanism for packing lines.</p>
+                </div>
+
+                <div class="project-item card-3d" data-tilt>
+                    <div class="project-tag">Inspection</div>
+                    <h3>Camera AI Check & OCR Read Label</h3>
+                    <p>Automated visual inspection using AI OCR for 2T/3T label verification.</p>
+                </div>
+
+                <div class="project-item card-3d" data-tilt>
+                    <div class="project-tag">Industrial IoT</div>
+                    <h3>Traceability System & Un-Lot System</h3>
+                    <p>Complete product tracking system across assembly line operations.</p>
+                </div>
+
+                <div class="project-item card-3d" data-tilt>
+                    <div class="project-tag">Smart Monitoring</div>
+                    <h3>Early Detection & Lifetime Tool System</h3>
+                    <p>Predictive maintenance system monitoring tool health and AP+DN7 metrics.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements-section" class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal-on-scroll text-center">HONORS & ACHIEVEMENTS</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card card-3d" data-tilt>
+                    <span class="achieve-year">2025</span>
+                    <i class="fas fa-trophy achieve-icon"></i>
+                    <h3>Gold Medal ICQ Tokyo Japan</h3>
+                    <p>Gold Medal at the International Conference Quality (ICQ) in Tokyo, Japan.</p>
+                </div>
+                <div class="achievement-card card-3d" data-tilt>
+                    <span class="achieve-year">2024</span>
+                    <i class="fas fa-globe achieve-icon"></i>
+                    <h3>Global Sharing Denso Japan</h3>
+                    <p>Positive appreciation Group QCC in Global Sharing Denso Japan.</p>
+                </div>
+                <div class="achievement-card card-3d" data-tilt>
+                    <span class="achieve-year">2023</span>
+                    <i class="fas fa-medal achieve-icon"></i>
+                    <h3>1st Winner QCC Denso Asia</h3>
+                    <p>1st Winner QCC Denso Regional Asia & The Best & Most SS FY '23.</p>
+                </div>
+                <div class="achievement-card card-3d" data-tilt>
+                    <span class="achieve-year">2022</span>
+                    <i class="fas fa-award achieve-icon"></i>
+                    <h3>1st Winner QCC Denso Indonesia</h3>
+                    <p>1st Winner QCC Denso Indonesia Group & The Best & Most SS FY '22.</p>
+                </div>
+                <div class="achievement-card card-3d" data-tilt>
+                    <span class="achieve-year">2020 - 2021</span>
+                    <i class="fas fa-star achieve-icon"></i>
+                    <h3>SS Awards & Maintenance Skill</h3>
+                    <p>2nd Runner Up Basic Maintenance Skill Competition (2020) & 4th Winner SS AOP (2021).</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 7. EXPERIENCES & HONORS TIMELINE -->
-        <section id="experiences" class="reveal-on-scroll">
-            <h2 class="section-heading">EXPERIENCES & HONORS</h2>
-            
-            <div class="experience-card">
-                <div class="exp-date">2025</div>
-                <h3 class="exp-role">GOLD MEDALIST - ICQ TOKYO JAPAN</h3>
-                <div class="exp-company">International Conference Quality</div>
-                <p>Memimpin presentasi perbaikan sistem manufaktur berbasis Kaizen & QCC di tingkat internasional.</p>
+    <!-- Contact Section -->
+    <section id="contact" class="big-footer section-padding">
+        <div class="container text-center">
+            <h2 class="giant-text reveal-on-scroll">LET'S CONNECT</h2>
+            <p class="contact-sub">Adelia Residence Blok D3, Setu, Bekasi | 085 225 426 995</p>
+            <div class="footer-links">
+                <a href="mailto:m.reizalfani@gmail.com">EMAIL</a>
+                <a href="https://www.linkedin.com/in/muhammad-reizalfani-baharudin" target="_blank">LINKEDIN</a>
+                <a href="tel:085225426995">WHATSAPP</a>
             </div>
+            <div class="footer-bottom">
+                <p>BEKASI, INDONESIA</p>
+                <p>© 2026 MUHAMMAD REIZALFANI BAHARUDIN</p>
+                <a href="#hero" id="back-to-top">BACK TO TOP ↑</a>
+            </div>
+        </div>
+    </section>
 
-            <div class="experience-card">
-                <div class="exp-date">2023 - 2024</div>
-                <h3 class="exp-role">1ST WINNER QCC DENSO REGIONAL ASIA</h3>
-                <div class="exp-company">Denso Global Sharing & Regional Award</div>
-                <p>Mencapai penghargaan perbaikan efisiensi operasional terbaik tingkat regional Asia.</p>
-            </div>
+    <!-- Modal Complete CV -->
+    <div id="cv-modal" class="cv-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <button class="close-btn" id="close-cv-btn">&times;</button>
+        <div class="modal-content">
+            <div class="cv-paper-frame">
+                <div class="cv-html-paper">
+                    <div class="cv-header">
+                        <h1>MUHAMMAD REIZALFANI BAHARUDIN</h1>
+                        <p>Adelia Residence Blok D3, Setu, Bekasi | 085 225 426 995 | <a href="mailto:m.reizalfani@gmail.com">m.reizalfani@gmail.com</a></p>
+                        <p><a href="https://www.linkedin.com/in/muhammad-reizalfani-baharudin" target="_blank">LinkedIn Profile</a></p>
+                    </div>
+                    
+                    <div class="cv-body">
+                        <div class="cv-section">
+                            <h2>PROFILE</h2>
+                            <p>Manufacturing professional with over 7 years of experience in production systems and continuous improvement. Proven expertise in supporting production operations through machine inspection systems, implementing both conventional and digital improvement strategies to enhance efficiency and reliability. Strong background in electrical and mechanical design, with advanced skills in data analysis and visualization to drive process optimization. Adept at bridging technical knowledge with leadership and communication abilities, ensuring effective collaboration across teams.</p>
+                        </div>
 
-            <div class="experience-card">
-                <div class="exp-date">2020 - SEKARANG</div>
-                <h3 class="exp-role">CONTINUOUS IMPROVEMENT & PRODUCTION LEADER</h3>
-                <div class="exp-company">PT Denso Indonesia</div>
-                <p>Mengoptimalkan efisiensi produksi, integrasi IoT, Machine Learning, serta otomatisasi sistem manufaktur.</p>
-            </div>
-        </section>
+                        <div class="cv-section">
+                            <h2>WORK EXPERIENCE</h2>
+                            <div class="cv-item">
+                                <div class="cv-item-header">
+                                    <strong>PT Denso Indonesia Fajar Plant — Technician / Einsteller</strong>
+                                    <span>2021 — Present</span>
+                                </div>
+                                <ul>
+                                    <li>Stabilizing line efficiency and preparing system readiness for upcoming automation projects.</li>
+                                    <li>Develop New product, Control KPI Production, Create Improvement, Cost Reduction Activity, Maintain packing process.</li>
+                                </ul>
+                            </div>
+                            <div class="cv-item">
+                                <div class="cv-item-header">
+                                    <strong>PT Denso Indonesia Fajar Plant — Production Operator (Spark Plug Iridium)</strong>
+                                    <span>2020 — 2021</span>
+                                </div>
+                                <ul>
+                                    <li>Executed SOPs across multiple production processes as a Multiskill Operator.</li>
+                                    <li>Maintained 5S, safety standards, and 100% quality compliance.</li>
+                                </ul>
+                            </div>
+                            <div class="cv-item">
+                                <div class="cv-item-header">
+                                    <strong>PT Denso Indonesia Bekasi Plant — Kougyo Senmon / Denso Academy</strong>
+                                    <span>2019 — 2020</span>
+                                </div>
+                                <ul>
+                                    <li>Completed technical training program modeled after Japanese Kosen system, mastering automation and robotics.</li>
+                                </ul>
+                            </div>
+                        </div>
 
-        <!-- 8. CORE SKILLS & CV MODAL TRIGGER -->
-        <section class="skills-wrapper reveal-on-scroll">
-            <h2 class="section-heading">CORE SKILLS & COMPETENCIES</h2>
-            
-            <div class="skill-group-title">AUTOMATION & INDUSTRIAL SYSTEMS</div>
-            <div class="tag-cloud">
-                <span class="tag-item">PLC Programming</span>
-                <span class="tag-item">Industrial Automation</span>
-                <span class="tag-item">Camera AI Check & OCR</span>
-                <span class="tag-item">Electrical Installation</span>
-            </div>
+                        <div class="cv-section">
+                            <h2>EDUCATION</h2>
+                            <p><strong>State Polytechnic of Jakarta</strong> — Diploma in Electronics Industry Engineering (Completed 2020 | GPA: 3.76)</p>
+                            <p><strong>KOSEN (DENSO Academy)</strong> — Certificate in Manufacture Engineering (Completed 2020 | Score: 86.34)</p>
+                        </div>
 
-            <div class="skill-group-title">DIGITALIZATION & CONTINUOUS IMPROVEMENT</div>
-            <div class="tag-cloud">
-                <span class="tag-item">Digitalized System & IoT</span>
-                <span class="tag-item">Kaizen & QCC Skill</span>
-                <span class="tag-item">5S & Safety Standard</span>
-                <span class="tag-item">Traceability System</span>
-            </div>
+                        <div class="cv-section">
+                            <h2>PROJECT EXPERIENCE</h2>
+                            <p>IoT System Machine Learning | E-Dekidaka System | 3 Point Check System Packing Ir | Un-Lot System | Traceability System | Camera OCR Read Label 2T/3T | Camera AI Check | Weight Scale Confirmation | SOS Project | Early Detection System | Control Lifetime Tool System | AP+DN7 Monitoring System</p>
+                        </div>
 
-            <div style="text-align: center; margin-top: 50px;">
-                <button class="cv-trigger-btn" id="open-cv-btn">VIEW FULL RESUME / CV ↗</button>
-            </div>
-        </section>
-    </div>
+                        <div class="cv-section">
+                            <h2>ACHIEVEMENTS</h2>
+                            <ul>
+                                <li>2025 | Gold Medal International Conference Quality (ICQ) in Tokyo Japan</li>
+                                <li>2024 | Positive appreciation Group QCC In Global Sharing Denso Japan</li>
+                                <li>2023 | The Best & Most SS FY '23, 1st Winner QCC Denso Regional Asia</li>
+                                <li>2022 | The Best & Most SS FY '22, 1st Winner QCC Denso Indonesia Group</li>
+                                <li>2021 | The Best & Most SS FY '21, 4th Winner Presentation SS AOP</li>
+                                <li>2020 | The Best & Most SS FY '20, 2nd Runner UP Basic Maintenance Skill Competition</li>
+                            </ul>
+                        </div>
 
-    <!-- 9. INTERACTIVE RESUME / CV MODAL -->
-    <div class="modal-overlay" id="cv-modal">
-        <div class="modal-container">
-            <button class="close-modal-btn" id="close-cv-btn">&times;</button>
-            <div class="modal-header">
-                <h2>MUHAMMAD REIZALFANI BAHARUDIN</h2>
-                <p style="font-size: 13px; color: var(--text-muted);">Continuous Improvement Engineer & Production Leader</p>
-            </div>
-            
-            <div class="modal-section">
-                <h3>PROFILE SUMMARY</h3>
-                <p>Profesional berpengalaman lebih dari 7 tahun di industri manufaktur otomotif (PT Denso Indonesia) dengan keahlian utama dalam otomasi industri, PLC programming, integrasi IoT, dan metodologi perbaikan berkelanjutan (Kaizen/QCC). Peraih Gold Medalist ICQ Tokyo Japan 2025.</p>
-            </div>
-
-            <div class="modal-section">
-                <h3>EDUCATION</h3>
-                <p><strong>Politeknik Negeri Bandung (POLBAN)</strong> — Diploma III Teknik Elektronika</p>
-                <p>IPK: 3.76 / 4.00 (Predikat Cum Laude)</p>
-            </div>
-
-            <div class="modal-section">
-                <h3>KEY CERTIFICATIONS & AWARDS</h3>
-                <ul>
-                    <li>Gold Medalist — International Conference Quality (ICQ) Tokyo, Japan (2025)</li>
-                    <li>1st Winner — QCC Denso Regional Asia Award (2023-2024)</li>
-                    <li>Certified PLC & Automation Engineer</li>
-                </ul>
+                        <div class="cv-section">
+                            <h2>SKILLS</h2>
+                            <p>PLC Programming | Electrical Installation | Script Programming | Digitalized System | Communication Skill | QCC Skill | Microsoft Office Application | Database System | Middleware Communication Machine</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- 10. BIG FOOTER SECTION -->
-    <footer class="dark-footer" id="contact">
-        <h1 class="footer-big-text">LET'S TALK</h1>
-        
-        <div class="footer-links">
-            <a href="mailto:m.reizalfani@gmail.com">EMAIL</a>
-            <a href="https://www.linkedin.com/in/muhammad-reizalfani-baharudin" target="_blank" rel="noopener">LINKEDIN</a>
-            <a href="tel:085225426995">PHONE / WA</a>
-        </div>
-
-        <div class="footer-bottom">
-            <span>BEKASI, INDONESIA</span>
-            <span>© 2026 MUHAMMAD REIZALFANI BAHARUDIN</span>
-            <a href="#" class="back-to-top" id="back-to-top">BACK TO TOP ↑</a>
-        </div>
-    </footer>
-
-    <!-- INTERACTIVE JAVASCRIPT ENGINE -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            /* 1. INITIAL LOADER COUNTER ANIMATION */
-            const loader = document.getElementById('loader');
-            const counter = document.getElementById('counter');
-            let count = 0;
-
-            const updateCounter = setInterval(() => {
-                count += Math.floor(Math.random() * 8) + 1;
-                if (count >= 100) {
-                    count = 100;
-                    counter.innerText = count;
-                    clearInterval(updateCounter);
-
-                    setTimeout(() => {
-                        loader.style.transform = 'translateY(-100%)';
-                        animateHeroTitle();
-                    }, 400);
-                } else {
-                    counter.innerText = count;
-                }
-            }, 30);
-
-            /* 2. REAL-TIME DIGITAL CLOCK */
-            const liveClock = document.getElementById('live-clock');
-            function updateClock() {
-                const now = new Date();
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const seconds = String(now.getSeconds()).padStart(2, '0');
-                liveClock.innerText = `${hours}:${minutes}:${seconds}`;
-            }
-            setInterval(updateClock, 1000);
-            updateClock();
-
-            /* 3. HERO TITLE CHARACTER-BY-CHARACTER ANIMATION */
-            const nameHeader = document.getElementById('interactive-name');
-            const rawText = nameHeader.innerText;
-            nameHeader.innerHTML = '';
-
-            Array.from(rawText).forEach(char => {
-                const span = document.createElement('span');
-                span.classList.add('char');
-                span.innerHTML = char === ' ' ? '&nbsp;' : char;
-                nameHeader.appendChild(span);
-            });
-
-            function animateHeroTitle() {
-                const chars = nameHeader.querySelectorAll('.char');
-                chars.forEach((char, index) => {
-                    setTimeout(() => {
-                        char.classList.add('active');
-                    }, index * 40);
-                });
-            }
-
-            /* 4. DARK / LIGHT THEME TOGGLE */
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const themeIcon = themeToggleBtn.querySelector('i');
-            
-            themeToggleBtn.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'dark') {
-                    document.documentElement.removeAttribute('data-theme');
-                    themeIcon.className = 'fa-solid fa-moon';
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    themeIcon.className = 'fa-solid fa-sun';
-                }
-            });
-
-            /* 5. SCROLL REVEAL INTERACTION (INTERSECTION OBSERVER) */
-            const revealElements = document.querySelectorAll('.reveal-on-scroll');
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, { threshold: 0.15 });
-
-            revealElements.forEach(el => revealObserver.observe(el));
-
-            /* 6. 3D CARD TILT EFFECT ON HOVER FOR PROJECTS */
-            const projectCards = document.querySelectorAll('.project-item');
-            projectCards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    card.style.transform = `perspective(1000px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg) scale(1.01)`;
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-                });
-            });
-
-            /* 7. CV MODAL SYSTEM INTERACTION */
-            const cvModal = document.getElementById('cv-modal');
-            const openCvBtn = document.getElementById('open-cv-btn');
-            const closeCvBtn = document.getElementById('close-cv-btn');
-
-            openCvBtn.addEventListener('click', () => {
-                cvModal.classList.add('active');
-            });
-
-            closeCvBtn.addEventListener('click', () => {
-                cvModal.classList.remove('active');
-            });
-
-            cvModal.addEventListener('click', (e) => {
-                if (e.target === cvModal) {
-                    cvModal.classList.remove('active');
-                }
-            });
-
-            /* 8. BACK TO TOP SMOOTH SCROLL */
-            const backToTopBtn = document.getElementById('back-to-top');
-            backToTopBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
