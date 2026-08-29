@@ -1,539 +1,1062 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Izzan Fieldi - Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Reizalfani Baharudin - Portfolio</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="./Muhammad Izzan Fieldi - Portfolio_files/css2" rel="stylesheet">
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="./Muhammad Izzan Fieldi - Portfolio_files/style.css">
+    <style>
+        /* CSS VARIABLES & THEMING SYSTEM */
+        :root {
+            --bg-main: #EAE6DF;
+            --bg-card: #DFDAD1;
+            --bg-dark: #12161A;
+            --text-dark: #12161A;
+            --text-muted: #5A626A;
+            --accent-blue: #2A4365;
+            --border-dark: #12161A;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-main: #12161A;
+            --bg-card: #1C2228;
+            --bg-dark: #EAE6DF;
+            --text-dark: #EAE6DF;
+            --text-muted: #94A3B8;
+            --accent-blue: #63B3ED;
+            --border-dark: #EAE6DF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* 1. INITIAL LOADER SCREEN */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-dark);
+            color: var(--bg-main);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .loader-content {
+            font-family: var(--font-display);
+            font-size: clamp(80px, 15vw, 160px);
+            font-weight: 900;
+        }
+
+        /* 2. FLOATING NAVBAR & INTERACTION */
+        .navbar-wrapper {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            z-index: 1000;
+        }
+
+        .navbar {
+            background: rgba(234, 230, 223, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(18, 22, 26, 0.15);
+            border-radius: 50px;
+            padding: 12px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 700;
+            transition: var(--transition-smooth);
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(18, 22, 26, 0.75);
+            border-color: rgba(234, 230, 223, 0.15);
+        }
+
+        .nav-location {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 22px;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--text-dark);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: 1.5px solid var(--text-dark);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: var(--transition-smooth);
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: var(--text-dark);
+            color: var(--bg-main);
+        }
+
+        /* 3. HERO SECTION WITH CHARACTER REVEAL & SLIDER */
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 160px 20px 60px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .giant-title {
+            font-family: var(--font-display);
+            font-size: clamp(55px, 11vw, 140px);
+            line-height: 0.85;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            user-select: none;
+        }
+
+        .giant-title span.char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(40px) rotate(5deg);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+        }
+
+        .giant-title span.char.active {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg);
+        }
+
+        .hero-subtitle-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-top: 2px solid var(--text-dark);
+            padding-top: 15px;
+            overflow: hidden;
+        }
+
+        /* VERTICAL ROLE SLIDER */
+        .role-slider {
+            height: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .role-list {
+            display: flex;
+            flex-direction: column;
+            animation: slideRoles 12s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+        }
+
+        .role-list span {
+            height: 24px;
+            line-height: 24px;
+            color: var(--accent-blue);
+            font-weight: 800;
+            text-align: right;
+        }
+
+        @keyframes slideRoles {
+            0%, 20% { transform: translateY(0); }
+            25%, 45% { transform: translateY(-24px); }
+            50%, 70% { transform: translateY(-48px); }
+            75%, 95% { transform: translateY(-72px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* 4. INFINITE MARQUEE */
+        .marquee-container {
+            background: var(--text-dark);
+            color: var(--bg-main);
+            padding: 16px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 40px 0 80px;
+        }
+
+        .marquee-content {
+            display: inline-flex;
+            gap: 20px;
+            animation: marquee 25s linear infinite;
+            font-family: var(--font-display);
+            font-size: 26px;
+            letter-spacing: 2px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* 5. INTERACTIVE SECTION HEADERS & REVEAL ANIMATION */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-heading {
+            font-family: var(--font-display);
+            font-size: clamp(40px, 6vw, 75px);
+            line-height: 1;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--text-dark);
+            padding-bottom: 10px;
+        }
+
+        /* 6. FEATURED WORKS (HOVER IMAGE PREVIEW & TILT) */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 100px;
+        }
+
+        .project-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+            border: 1px solid rgba(18, 22, 26, 0.15);
+            background-color: var(--bg-card);
+            text-decoration: none;
+            color: inherit;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        [data-theme="dark"] .project-item {
+            border-color: rgba(234, 230, 223, 0.15);
+        }
+
+        .project-item:hover {
+            border-color: var(--text-dark);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .project-num {
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: var(--text-muted);
+            margin-right: 30px;
+        }
+
+        .project-info {
+            flex: 1;
+        }
+
+        .project-title-text {
+            font-family: var(--font-display);
+            font-size: clamp(26px, 3.5vw, 44px);
+            line-height: 1.05;
+        }
+
+        .project-sub {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            letter-spacing: 1px;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+
+        .project-arrow {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover .project-arrow {
+            transform: translate(6px, -6px);
+        }
+
+        /* 7. IMPACT STATS GRID */
+        .stats-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 100px;
+        }
+
+        .stat-box {
+            border: 2px solid var(--border-dark);
+            padding: 40px 20px;
+            text-align: center;
+            background: var(--bg-card);
+            border-radius: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-8px);
+        }
+
+        .stat-big-num {
+            font-family: var(--font-display);
+            font-size: 72px;
+            line-height: 1;
+            color: var(--accent-blue);
+        }
+
+        .stat-box-title {
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .stat-box-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* 8. EXPERIENCES TIMELINE */
+        .experience-card {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent-blue);
+            padding: 30px;
+            margin-bottom: 24px;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        .experience-card:hover {
+            transform: translateX(8px);
+        }
+
+        .exp-date {
+            font-family: var(--font-display);
+            font-size: 22px;
+            color: var(--accent-blue);
+            letter-spacing: 1px;
+        }
+
+        .exp-role {
+            font-family: var(--font-display);
+            font-size: 32px;
+            line-height: 1.1;
+            margin: 4px 0;
+        }
+
+        .exp-company {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        /* 9. SKILL TAGS */
+        .skills-wrapper {
+            margin-bottom: 100px;
+        }
+
+        .skill-group-title {
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            margin: 30px 0 14px;
+            border-bottom: 1px dashed var(--text-muted);
+            padding-bottom: 6px;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag-item {
+            border: 1.5px solid var(--text-dark);
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: transparent;
+            transition: var(--transition-smooth);
+            cursor: default;
+        }
+
+        .tag-item:hover {
+            background-color: var(--text-dark);
+            color: var(--bg-main);
+        }
+
+        /* 10. CV MODAL SYSTEM */
+        .cv-trigger-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 32px;
+            background-color: var(--text-dark);
+            color: var(--bg-main);
+            font-family: var(--font-sans);
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid var(--text-dark);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .cv-trigger-btn:hover {
+            background-color: transparent;
+            color: var(--text-dark);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(18, 22, 26, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: var(--bg-main);
+            color: var(--text-dark);
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            border-radius: 12px;
+            padding: 40px;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(30px) scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 2px solid var(--border-dark);
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0) scale(1);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            font-size: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .modal-header {
+            border-bottom: 2px solid var(--text-dark);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-family: var(--font-display);
+            font-size: 36px;
+        }
+
+        .modal-section {
+            margin-bottom: 20px;
+        }
+
+        .modal-section h3 {
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+        }
+
+        .modal-section p, .modal-section ul {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .modal-section ul {
+            padding-left: 18px;
+        }
+
+        /* 11. BIG FOOTER */
+        .dark-footer {
+            background: var(--bg-dark);
+            color: var(--bg-main);
+            padding: 80px 20px 40px;
+            text-align: center;
+            margin-top: 60px;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .footer-big-text {
+            font-family: var(--font-display);
+            font-size: clamp(70px, 14vw, 170px);
+            line-height: 0.85;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            user-select: none;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--bg-main);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.6;
+        }
+
+        .footer-bottom {
+            font-size: 11px;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .back-to-top {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-subtitle-flex { flex-direction: column; gap: 10px; text-align: center; }
+            .role-list span { text-align: center; }
+            .footer-bottom { flex-direction: column; text-align: center; align-items: center; }
+        }
+    </style>
 </head>
-<body class="page-transition" style="overflow: auto;">
+<body>
 
-    <div id="loader" style="transform: translateY(-100%);">
-        <div class="loader-content">
-            <span id="counter">100</span>
-        </div>
-    </div>
+    <!-- 1. LOADING SCREEN INTERACTION -->
+    <div id="loader">
+        <div class="loader-content">
+            <span id="counter">0</span>
+        </div>
+    </div>
 
-    <header class="jas-header" id="header">
-        <nav class="container">
-            <div class="location">
-                <span>PALEMBANG, ID</span> • <span id="live-time">01:22:20</span>
-            </div>
-            <a href="#hero" class="logo">
-                <img src="./Muhammad Izzan Fieldi - Portfolio_files/Logo Izzan.png" alt="Muhammad Izzan Fieldi Logo" class="logo-img">
-            </a>
+    <!-- 2. FIXED FLOATING NAVIGATION BAR -->
+    <div class="navbar-wrapper">
+        <nav class="navbar">
+            <div class="nav-location">BEKASI, ID • <span id="live-clock">00:00:00</span></div>
+            <a href="#" class="nav-brand">M. REIZALFANI BAHARUDIN</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#works">Portfolio</a></li>
+                <li><a href="#experiences">Experiences</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle-btn" id="theme-toggle" title="Switch Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </div>
 
-            <ul class="jas-nav" id="nav-menu">
-                <li><a href="#hero" data-text="HOME">HOME</a></li>
-                <li><a href="#portfolio-section" data-text="PORTFOLIO">PORTFOLIO</a></li>
-                <li><a href="#experiences-section" data-text="EXPERIENCES">EXPERIENCES</a></li>
-                <li><a href="#about-section" data-text="ABOUT">ABOUT</a></li>
-            </ul>
-            
-            <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle">🌙</button>
-                <div class="hamburger" id="hamburger">
-                   <span></span>
-                   <span></span>
-                   <span></span>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <div class="wrapper">
+        <!-- 3. HERO SECTION WITH CHARACTER-BY-CHARACTER ANIMATION & ROLE SLIDER -->
+        <section class="hero-section" id="about">
+            <h1 class="giant-title" id="interactive-name">REIZALFANI</h1>
+            <div class="hero-subtitle-flex">
+                <span>I AM A</span>
+                <div class="role-slider">
+                    <div class="role-list">
+                        <span>CONTINUOUS IMPROVEMENT ENGINEER</span>
+                        <span>PRODUCTION LEADER</span>
+                        <span>INDUSTRIAL AUTOMATION SPECIALIST</span>
+                        <span>IOT & SYSTEM INTEGRATOR</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-    <section id="hero" class="hero">
-        <div class="hero-container">
-            <h1 class="hero-name" id="interactive-name">
-                <span class="animate-in">I</span><span class="animate-in">Z</span><span class="animate-in">Z</span><span class="animate-in">A</span><span class="animate-in">N</span><span class="animate-in">&nbsp;</span><span class="animate-in">F</span><span class="animate-in">I</span><span class="animate-in">E</span><span class="animate-in">L</span><span class="animate-in">D</span><span class="animate-in">I</span>
-            </h1>
-            
-            <div class="hero-footer">
-                <p>I AM A</p>
-                <div class="role-slider">
-                    <div class="role-list">
-                        <span>HCI RESEARCHER</span>
-                        <span>ERP FUNCTIONAL</span>
-                        <span>UX/UI DESIGNER</span>
-                        <span>SYSTEM ANALYST</span>
-                        <span>DATA ANALYST</span>
-                        <span>HCI RESEARCHER</span>
-                        <span>DATA ANALYTICS &amp; BI</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- 4. CONTINUOUS MARQUEE RUNNER -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            PLC PROGRAMMING • KAIZEN & QCC SKILL • INDUSTRIAL AUTOMATION • CAMERA AI CHECK & OCR • DIGITALIZED SYSTEM & IOT • ELECTRICAL INSTALLATION • 5S & SAFETY STANDARD •
+            PLC PROGRAMMING • KAIZEN & QCC SKILL • INDUSTRIAL AUTOMATION • CAMERA AI CHECK & OCR • DIGITALIZED SYSTEM & IOT • ELECTRICAL INSTALLATION • 5S & SAFETY STANDARD •
+        </div>
+    </div>
 
-    <div class="marquee">
-        <div class="marquee-content">
-            <span>SYSTEM/DATA ANALYSIS • DATA ANALYTICS &amp; BI • HCI RESEARCH • UX/UI DESIGN • ERP FUNCTIONAL • </span>
-            <span>SYSTEM/DATA ANALYSIS • DATA ANALYTICS &amp; BI • HCI RESEARCH • UX/UI DESIGN • ERP FUNCTIONAL • </span>
-            <span>SYSTEM/DATA ANALYSIS • DATA ANALYTICS &amp; BI • HCI RESEARCH • UX/UI DESIGN • ERP FUNCTIONAL • </span>
-        </div>
-    </div>
+    <div class="wrapper">
+        <!-- 5. FEATURED WORKS WITH INTERACTIVE TILT & HOVER CARDS -->
+        <section id="works" class="reveal-on-scroll">
+            <h2 class="section-heading">FEATURED WORKS</h2>
+            <div class="project-list">
+                
+                <a href="#works" class="project-item">
+                    <span class="project-num">01</span>
+                    <div class="project-info">
+                        <h3 class="project-title-text">E-DEKIDAKA & EARLY DETECTION SYSTEM</h3>
+                        <div class="project-sub">PLC • IOT SYSTEM • MACHINE LEARNING</div>
+                    </div>
+                    <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
 
-    <section id="portfolio-section" class="section-padding">
-        <div class="container">
-            <h2 class="reveal-base reveal-slide-up">FEATURED WORKS</h2>
-            <div class="portfolio-list">
-                
-                <a href="wms-casestudy.html" class="portfolio-row">
-                    <div class="port-left-group">
-                        <div class="port-title-wrapper">
-                            <span class="port-num">01</span>
-                            <h3 class="port-title">Warehouse Management System</h3>
-                        </div>
-                        <p class="port-tags">UI/UX Research • TCSD Method • Journal Published</p>
-                    </div>
-                    <div class="port-right-group">
-                        <div class="inline-img-wrapper">
-                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Porto.png" alt="WMS Project">
-                        </div>
-                        <span class="port-arrow">↗</span>
-                    </div>
-                </a>
+                <a href="#works" class="project-item">
+                    <span class="project-num">02</span>
+                    <div class="project-info">
+                        <h3 class="project-title-text">CAMERA OCR READ LABEL & WEIGHT SCALE CHECK</h3>
+                        <div class="project-sub">CAMERA AI • OCR READ • PACKING EXP</div>
+                    </div>
+                    <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
 
-                <a href="odoo-casestudy.html" class="portfolio-row">
-                    <div class="port-left-group">
-                        <div class="port-title-wrapper">
-                            <span class="port-num">02</span>
-                            <h3 class="port-title">Odoo ERP Implementation</h3>
-                        </div>
-                        <p class="port-tags">ERP Consultant • Business Process • SDLC</p>
-                    </div>
-                    <div class="port-right-group">
-                        <div class="inline-img-wrapper">
-                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Odoo-Thumbnail.png" alt="Odoo ERP Project">
-                        </div>
-                        <span class="port-arrow">↗</span>
-                    </div>
-                </a>
+                <a href="#works" class="project-item">
+                    <span class="project-num">03</span>
+                    <div class="project-info">
+                        <h3 class="project-title-text">TRACEABILITY & LIFETIME TOOL CONTROL SYSTEM</h3>
+                        <div class="project-sub">MIDDLEWARE • DATABASE SYSTEM • AP+DN7</div>
+                    </div>
+                    <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
 
-                <a href="https://drive.google.com/drive/folders/1vWhIErpYwG-G3h06dMKj5joi-f1TGrDr?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
-                    <div class="port-left-group">
-                        <div class="port-title-wrapper">
-                            <span class="port-num">03</span>
-                            <h3 class="port-title">Sales Analytics Dashboard</h3>
-                        </div>
-                        <p class="port-tags">Excel Macro VBA • Data Analysis • KarirNex Bootcamp</p>
-                    </div>
-                    <div class="port-right-group">
-                        <div class="inline-img-wrapper">
-                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Excel.png" alt="Excel VBA Project">
-                        </div>
-                        <span class="port-arrow">↗</span>
-                    </div>
-                </a>
+            </div>
+        </section>
 
-                <a href="https://drive.google.com/drive/folders/18TMK7HP0Unwxg87zrQIVO9rIEx_W7OIk?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
-                    <div class="port-left-group">
-                        <div class="port-title-wrapper">
-                            <span class="port-num">04</span>
-                            <h3 class="port-title">Sales Data Visualization</h3>
-                        </div>
-                        <p class="port-tags">Tableau • Business Intelligence • Personal Project</p>
-                    </div>
-                    <div class="port-right-group">
-                        <div class="inline-img-wrapper">
-                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Dashboard Tableau.png" alt="Tableau Visualization Project">
-                        </div>
-                        <span class="port-arrow">↗</span>
-                    </div>
-                </a>
+        <!-- 6. ACADEMIC & CAREER HIGHLIGHT STATS -->
+        <section class="reveal-on-scroll">
+            <h2 class="section-heading">ACADEMIC & CAREER IMPACT</h2>
+            <div class="stats-grid-modern">
+                <div class="stat-box">
+                    <div class="stat-big-num">7+ YRS</div>
+                    <div class="stat-box-title">Manufacturing Experience</div>
+                    <div class="stat-box-desc">PT Denso Indonesia</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-big-num">GOLD</div>
+                    <div class="stat-box-title">ICQ Tokyo Japan (2025)</div>
+                    <div class="stat-box-desc">International Quality Award</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-big-num">3.76</div>
+                    <div class="stat-box-title">IPK Electronics</div>
+                    <div class="stat-box-desc">Politeknik Negeri Jakarta</div>
+                </div>
+            </div>
+        </section>
 
-                <a href="https://drive.google.com/drive/folders/1gJli-saHCsPOgCBIoISgX80z53Vi5d3z?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
-                    <div class="port-left-group">
-                        <div class="port-title-wrapper">
-                            <span class="port-num">05</span>
-                            <h3 class="port-title">ASEAN SocioEconomic Dashboard</h3>
-                        </div>
-                        <p class="port-tags">SAP Analytics Cloud • Predictive • UN-SDGs</p>
-                    </div>
-                    <div class="port-right-group">
-                        <div class="inline-img-wrapper">
-                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/SAP AC.png" alt="SAP Dashboard Project">
-                        </div>
-                        <span class="port-arrow">↗</span>
-                    </div>
-                </a>
+        <!-- 7. EXPERIENCES & HONORS TIMELINE -->
+        <section id="experiences" class="reveal-on-scroll">
+            <h2 class="section-heading">EXPERIENCES & HONORS</h2>
+            
+            <div class="experience-card">
+                <div class="exp-date">2025</div>
+                <h3 class="exp-role">GOLD MEDALIST - ICQ TOKYO JAPAN</h3>
+                <div class="exp-company">International Conference Quality</div>
+                <p>Memimpin presentasi perbaikan sistem manufaktur berbasis Kaizen & QCC di tingkat internasional.</p>
+            </div>
 
-                <a href="https://drive.google.com/drive/folders/1pMXppqR6J1KGE68wlVZBjxo4x7BthRqc?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
-                    <div class="port-left-group">
-                        <div class="port-title-wrapper">
-                            <span class="port-num">06</span>
-                            <h3 class="port-title">Student Directory Mobile App</h3>
-                        </div>
-                        <p class="port-tags">React Native • Figma • UI/UX</p>
-                    </div>
-                    <div class="port-right-group">
-                        <div class="inline-img-wrapper">
-                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Splash-Screen-React.jpg" alt="React Native App">
-                        </div>
-                        <span class="port-arrow">↗</span>
-                    </div>
-                </a>
+            <div class="experience-card">
+                <div class="exp-date">2023 - 2024</div>
+                <h3 class="exp-role">1ST WINNER QCC DENSO REGIONAL ASIA</h3>
+                <div class="exp-company">Denso Global Sharing & Regional Award</div>
+                <p>Mencapai penghargaan perbaikan efisiensi operasional terbaik tingkat regional Asia.</p>
+            </div>
 
-                <a href="https://drive.google.com/drive/folders/18yBzPiCPQoeen89zCsS5WmX6CsIQY3Dj?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
-                    <div class="port-left-group">
-                        <div class="port-title-wrapper">
-                            <span class="port-num">07</span>
-                            <h3 class="port-title">Console Rental System Design</h3>
-                        </div>
-                        <p class="port-tags">System Analysis • OOAD • UML</p>
-                    </div>
-                    <div class="port-right-group">
-                        <div class="inline-img-wrapper">
-                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Console.png" alt="OOAD Project">
-                        </div>
-                        <span class="port-arrow">↗</span>
-                    </div>
-                </a>
+            <div class="experience-card">
+                <div class="exp-date">2020 - SEKARANG</div>
+                <h3 class="exp-role">CONTINUOUS IMPROVEMENT & PRODUCTION LEADER</h3>
+                <div class="exp-company">PT Denso Indonesia</div>
+                <p>Mengoptimalkan efisiensi produksi, integrasi IoT, Machine Learning, serta otomatisasi sistem manufaktur.</p>
+            </div>
+        </section>
 
-                <a href="https://drive.google.com/drive/folders/1CFxZU8jh6CRHiEDkZTJFdUZa_HbZFmdo?usp=sharing" class="portfolio-row" target="_blank" rel="noopener noreferrer">
-                    <div class="port-left-group">
-                        <div class="port-title-wrapper">
-                            <span class="port-num">08</span>
-                            <h3 class="port-title">Visual Design Archive</h3>
-                        </div>
-                        <p class="port-tags">Poster • Identity • Apparel • Branding</p>
-                    </div>
-                    <div class="port-right-group">
-                        <div class="inline-img-wrapper">
-                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/Denim Jacket.png" alt="Visual Design Archive">
-                        </div>
-                        <span class="port-arrow">↗</span>
-                    </div>
-                </a>
+        <!-- 8. CORE SKILLS & CV MODAL TRIGGER -->
+        <section class="skills-wrapper reveal-on-scroll">
+            <h2 class="section-heading">CORE SKILLS & COMPETENCIES</h2>
+            
+            <div class="skill-group-title">AUTOMATION & INDUSTRIAL SYSTEMS</div>
+            <div class="tag-cloud">
+                <span class="tag-item">PLC Programming</span>
+                <span class="tag-item">Industrial Automation</span>
+                <span class="tag-item">Camera AI Check & OCR</span>
+                <span class="tag-item">Electrical Installation</span>
+            </div>
 
-                <a href="https://drive.google.com/drive/folders/1rnY4oyf9PXtcWC4F1KJVIhxR0nbzg22j?usp=drive_link" class="portfolio-row" target="_blank" rel="noopener noreferrer">
-                    <div class="port-left-group">
-                        <div class="port-title-wrapper">
-                            <span class="port-num">09</span>
-                            <h3 class="port-title">Multimedia Production SDN 88</h3>
-                        </div>
-                        <p class="port-tags">Content Creation • Video Editing • Storyboard • Multimedia Production</p>
-                    </div>
-                    <div class="port-right-group">
-                        <div class="inline-img-wrapper">
-                            <img src="./Muhammad Izzan Fieldi - Portfolio_files/MPLS.jpeg" alt="SDN 88 Video Project">
-                        </div>
-                        <span class="port-arrow">↗</span>
-                    </div>
-                </a>
+            <div class="skill-group-title">DIGITALIZATION & CONTINUOUS IMPROVEMENT</div>
+            <div class="tag-cloud">
+                <span class="tag-item">Digitalized System & IoT</span>
+                <span class="tag-item">Kaizen & QCC Skill</span>
+                <span class="tag-item">5S & Safety Standard</span>
+                <span class="tag-item">Traceability System</span>
+            </div>
 
-            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <button class="cv-trigger-btn" id="open-cv-btn">VIEW FULL RESUME / CV ↗</button>
+            </div>
+        </section>
+    </div>
 
-            <h2 style="margin-top: 80px;" class="reveal-base reveal-stomp">RESEARCH &amp; PUBLICATIONS</h2>
-            <div class="research-item">
-                <h3>Human Computer Interaction Design in Web Based Warehouse Management Systems</h3>
-                <p><strong>Method Used:</strong> Task Centered System Design (TCSD).</p>
-                <a href="https://ejournal.ikado.ac.id/index.php/teknika/article/view/1375" class="btn-secondary" target="_blank" rel="noopener noreferrer">View Published Journal ↗</a>
-            </div>
-            <div class="research-item">
-                <h3>Deepseek Sentiment Analysis Based on Google Play Store Reviews Using Naive Bayes Method</h3>
-                <p><strong>Method Used:</strong> Sentiment Analysis.</p>
-                <a href="https://ojs.stmik-banjarbaru.ac.id/index.php/jutisi/article/view/2778" class="btn-secondary" target="_blank" rel="noopener noreferrer">View Published Journal ↗</a>
-            </div>
-            <div class="research-item">
-                <h3>Comparison of K-Means, K-Medoid, and DBSCAN for Clustering Quality of Life</h3>
-                <p><strong>Method Used:</strong> Comparative analysis of clustering algorithms.</p>
-                <a href="https://ejournal.itn.ac.id/index.php/jati/article/view/13916" class="btn-secondary" target="_blank" rel="noopener noreferrer">View Published Journal ↗</a>
-            </div>
-        </div>
-    </section>
+    <!-- 9. INTERACTIVE RESUME / CV MODAL -->
+    <div class="modal-overlay" id="cv-modal">
+        <div class="modal-container">
+            <button class="close-modal-btn" id="close-cv-btn">&times;</button>
+            <div class="modal-header">
+                <h2>MUHAMMAD REIZALFANI BAHARUDIN</h2>
+                <p style="font-size: 13px; color: var(--text-muted);">Continuous Improvement Engineer & Production Leader</p>
+            </div>
+            
+            <div class="modal-section">
+                <h3>PROFILE SUMMARY</h3>
+                <p>Profesional berpengalaman lebih dari 7 tahun di industri manufaktur otomotif (PT Denso Indonesia) dengan keahlian utama dalam otomasi industri, PLC programming, integrasi IoT, dan metodologi perbaikan berkelanjutan (Kaizen/QCC). Peraih Gold Medalist ICQ Tokyo Japan 2025.</p>
+            </div>
 
-    <section id="experiences-section" class="section-padding">
-        <div class="container">
-            <h2 class="reveal-base reveal-slide-side">PROFESSIONAL &amp; LEADERSHIP EXPERIENCE</h2>
-            <div class="experience-list">
-                
-                <div class="exp-row">
-                    <div class="exp-left" style="width: 100%;">
-                        <span class="exp-date">JUN 2026 — JUL 2026</span>
-                        <h3 class="exp-role">Freelance Content Creator &amp; Video Editor</h3>
-                        <p class="exp-company">SDN 88 PALEMBANG</p>
-                        <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6; opacity: 0.85;">
-                            <li>Produced three sequential video contents: AI-based food campaign, PHBS education, and MPLS event documentation.</li>
-                            <li>Managed the end-to-end production process, including concept creation, storyboarding, visual shooting, and final video editing.</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="modal-section">
+                <h3>EDUCATION</h3>
+                <p><strong>Politeknik Negeri Bandung (POLBAN)</strong> — Diploma III Teknik Elektronika</p>
+                <p>IPK: 3.76 / 4.00 (Predikat Cum Laude)</p>
+            </div>
 
-                <div class="exp-row">
-                    <div class="exp-left" style="width: 100%;">
-                        <span class="exp-date">DEC 2024 — JAN 2025</span>
-                        <h3 class="exp-role">Warehouse Operations Intern</h3>
-                        <p class="exp-company">PT. TELKOM AKSES</p>
-                        <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6; opacity: 0.85;">
-                            <li>Analyzed warehouse business processes and identified system requirements using Task-Centered System Design (TCSD).</li>
-                            <li>Conducted physical inventory reconciliation (Stock Opname) and monitored daily outbound/inbound material distribution.</li>
-                            <li>Redesigned the Warehouse Management System (WMS) interface to streamline logistics recording and improve operational efficiency.</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="modal-section">
+                <h3>KEY CERTIFICATIONS & AWARDS</h3>
+                <ul>
+                    <li>Gold Medalist — International Conference Quality (ICQ) Tokyo, Japan (2025)</li>
+                    <li>1st Winner — QCC Denso Regional Asia Award (2023-2024)</li>
+                    <li>Certified PLC & Automation Engineer</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-                <div class="exp-row">
-                    <div class="exp-left" style="width: 100%;">
-                        <span class="exp-date">DEC 2023 — DEC 2024</span>
-                        <h3 class="exp-role">Vice Chairman</h3>
-                        <p class="exp-company">HIMSI FASILKOM UNSRI</p>
-                        <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6; opacity: 0.85;">
-                            <li>Assisted in leading overall organizational operations and supervised cross-functional divisions.</li>
-                            <li>Spearheaded strategic planning and annual activity calendar development aligned with organizational goals.</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- 10. BIG FOOTER SECTION -->
+    <footer class="dark-footer" id="contact">
+        <h1 class="footer-big-text">LET'S TALK</h1>
+        
+        <div class="footer-links">
+            <a href="mailto:m.reizalfani@gmail.com">EMAIL</a>
+            <a href="https://www.linkedin.com/in/muhammad-reizalfani-baharudin" target="_blank" rel="noopener">LINKEDIN</a>
+            <a href="tel:085225426995">PHONE / WA</a>
+        </div>
 
-                <div class="exp-row">
-                    <div class="exp-left" style="width: 100%;">
-                        <span class="exp-date">OCT 2023 — OCT 2024</span>
-                        <h3 class="exp-role">Creative Design Member</h3>
-                        <p class="exp-company">Google Developer Group on Campus: UNSRI</p>
-                        <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6; opacity: 0.85;">
-                            <li>Designed visual solutions and infographics to effectively communicate complex information for events and social media.</li>
-                            <li>Collaborated with cross-divisional teams to maintain consistent visual branding across all community programs.</li>
-                        </ul>
-                    </div>
-                </div>
+        <div class="footer-bottom">
+            <span>BEKASI, INDONESIA</span>
+            <span>© 2026 MUHAMMAD REIZALFANI BAHARUDIN</span>
+            <a href="#" class="back-to-top" id="back-to-top">BACK TO TOP ↑</a>
+        </div>
+    </footer>
 
-                <div class="exp-row">
-                    <div class="exp-left" style="width: 100%;">
-                        <span class="exp-date">SEP 2023 — DEC 2024</span>
-                        <h3 class="exp-role">Steering Committee</h3>
-                        <p class="exp-company">Ikatan Bujang Gadis Fasilkom Unsri</p>
-                        <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.6; opacity: 0.85;">
-                            <li>Oversaw the Organizer Committee, ensuring all work programs executed in line with strategic goals.</li>
-                            <li>Conducted program evaluations and provided strategic problem-solving support during project execution.</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- INTERACTIVE JAVASCRIPT ENGINE -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-            </div>
+            /* 1. INITIAL LOADER COUNTER ANIMATION */
+            const loader = document.getElementById('loader');
+            const counter = document.getElementById('counter');
+            let count = 0;
 
-            <h2 style="margin-top: 100px; text-align: center; border-bottom: 2px solid var(--text-color); padding-bottom: 20px;" class="reveal-base reveal-flip is-visible">ACADEMIC IMPACT</h2>
-            
-            <div class="impact-brutal-grid">
-                <div class="impact-brutal-item">
-                    <span class="impact-giant-number">3.95</span>
-                    <h3 class="impact-title">CUM LAUDE GPA</h3>
-                    <p class="impact-desc">Excellence in Information Systems studies.</p>
-                </div>
-                <div class="impact-brutal-item">
-                    <span class="impact-giant-number">03</span>
-                    <h3 class="impact-title">PUBLICATIONS</h3>
-                    <p class="impact-desc">Peer-reviewed contributions to HCI, data clustering, and sentiment analysis.</p>
-                </div>
-                <div class="impact-brutal-item">
-                    <span class="impact-giant-number">TOP</span>
-                    <h3 class="impact-title">FINALIST</h3>
-                    <p class="impact-desc">National-level scientific competition recognition.</p>
-                </div>
-            </div>
+            const updateCounter = setInterval(() => {
+                count += Math.floor(Math.random() * 8) + 1;
+                if (count >= 100) {
+                    count = 100;
+                    counter.innerText = count;
+                    clearInterval(updateCounter);
 
-            <h2 style="margin-top: 100px; text-align: center;" class="reveal-base reveal-slide-up is-visible">CORE SKILLS &amp; COMPETENCIES</h2>
-            
-            <div class="comp-category" style="margin-top: 50px; margin-bottom: 40px;"> 
-                <h3>System Analysis &amp; ERP</h3>
-                <div class="tags" style="justify-content: center;"> 
-                    <span class="tag">Business Process Modeling</span> 
-                    <span class="tag">System Design (OOAD/UML)</span> 
-                    <span class="tag">Warehouse Operations (WMS)</span> 
-                    <span class="tag">ERP Implementations</span> 
-                </div> 
-            </div> 
+                    setTimeout(() => {
+                        loader.style.transform = 'translateY(-100%)';
+                        animateHeroTitle();
+                    }, 400);
+                } else {
+                    counter.innerText = count;
+                }
+            }, 30);
 
-            <div class="comp-category" style="margin-bottom: 40px;"> 
-                <h3>Data Analytics &amp; BI</h3>
-                <div class="tags" style="justify-content: center;"> 
-                    <span class="tag">SAP Analytics Cloud</span> 
-                    <span class="tag">Tableau &amp; Power BI</span> 
-                    <span class="tag">Python &amp; Gen AI</span> 
-                    <span class="tag">Macro VBA Excel</span>
-                    <span class="tag">Data Quality Validation</span>  
-                </div> 
-            </div>
+            /* 2. REAL-TIME DIGITAL CLOCK */
+            const liveClock = document.getElementById('live-clock');
+            function updateClock() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                liveClock.innerText = `${hours}:${minutes}:${seconds}`;
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
 
-            <div class="comp-category" style="margin-bottom: 40px;"> 
-                <h3>HCI &amp; Visual Design</h3>
-                <div class="tags" style="justify-content: center;"> 
-                    <span class="tag">UX/UI Prototyping (Figma)</span> 
-                    <span class="tag">React Native (Front-End)</span> 
-                    <span class="tag">Task Centered System Design</span> 
-                    <span class="tag">Usability Testing</span> 
-                </div> 
-            </div> 
+            /* 3. HERO TITLE CHARACTER-BY-CHARACTER ANIMATION */
+            const nameHeader = document.getElementById('interactive-name');
+            const rawText = nameHeader.innerText;
+            nameHeader.innerHTML = '';
 
-            <div class="comp-category"> 
-                <h3>Strategy &amp; Leadership</h3>
-                <div class="tags" style="justify-content: center;"> 
-                    <span class="tag">Continuous Improvement (Kaizen)</span> 
-                    <span class="tag">Project Management</span> 
-                    <span class="tag">Cross-divisional Coordination</span> 
-                    <span class="tag">Strategic Planning</span> 
-                </div> 
-            </div>
+            Array.from(rawText).forEach(char => {
+                const span = document.createElement('span');
+                span.classList.add('char');
+                span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                nameHeader.appendChild(span);
+            });
 
-            <h2 class="cert-section-title reveal-base reveal-stomp">LICENSES &amp; CERTIFICATIONS</h2>
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <h3 class="cert-category-title">Data Analytics &amp; BI</h3>
-                    <ul class="cert-list">
-                        <li>
-                            <div class="cert-info">
-                                <strong>Microsoft Office Specialist (Excel Expert)</strong>
-                                <span>KarirNex</span>
-                            </div>
-                            <button class="cert-link view-cert-btn" data-cert="Asset/KarirNex.jpg">VIEW ↗</button>
-                        </li>
-                        <li>
-                            <div class="cert-info">
-                                <strong>Introduction to Tableau</strong>
-                                <span>SimpliLearn</span>
-                            </div>
-                            <button class="cert-link view-cert-btn" data-cert="Asset/Tableau.jpg">VIEW ↗</button>
-                        </li>
-                        <li>
-                            <div class="cert-info">
-                                <strong>Power BI Data Modelling Basics</strong>
-                                <span>SimpliLearn</span>
-                            </div>
-                            <button class="cert-link view-cert-btn" data-cert="Asset/PowerBI.jpg">VIEW ↗</button>
-                        </li>
-                        <li>
-                            <div class="cert-info">
-                                <strong>Introduction to Data Analytics</strong>
-                                <span>RevoU</span>
-                            </div>
-                            <button class="cert-link view-cert-btn" data-cert="Asset/RevoU.jpg">VIEW ↗</button>
-                        </li>
-                    </ul>
-                </div>
+            function animateHeroTitle() {
+                const chars = nameHeader.querySelectorAll('.char');
+                chars.forEach((char, index) => {
+                    setTimeout(() => {
+                        char.classList.add('active');
+                    }, index * 40);
+                });
+            }
 
-                <div class="cert-card">
-                    <h3 class="cert-category-title">Data Science &amp; AI</h3>
-                    <ul class="cert-list">
-                        <li>
-                            <div class="cert-info">
-                                <strong>Data Science with Microsoft Fabric</strong>
-                                <span>Dicoding Indonesia</span>
-                            </div>
-                            <button class="cert-link view-cert-btn" data-cert="Asset/Fabric.jpg">VIEW ↗</button>
-                        </li>
-                        <li>
-                            <div class="cert-info">
-                                <strong>Python Programming</strong>
-                                <span>Dicoding Indonesia</span>
-                            </div>
-                            <button class="cert-link view-cert-btn" data-cert="Asset/Python.jpg">VIEW ↗</button>
-                        </li>
-                        <li>
-                            <div class="cert-info">
-                                <strong>Generative AI with Microsoft Azure</strong>
-                                <span>Dicoding Indonesia</span>
-                            </div>
-                            <button class="cert-link view-cert-btn" data-cert="Asset/Azure.jpg">VIEW ↗</button>
-                        </li>
-                    </ul>
-                </div>
+            /* 4. DARK / LIGHT THEME TOGGLE */
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeIcon = themeToggleBtn.querySelector('i');
+            
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                if (currentTheme === 'dark') {
+                    document.documentElement.removeAttribute('data-theme');
+                    themeIcon.className = 'fa-solid fa-moon';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeIcon.className = 'fa-solid fa-sun';
+                }
+            });
+ /* 5. SCROLL REVEAL INTERACTION (INTERSECTION OBSERVER) */
 
-                <div class="cert-card">
-                    <h3 class="cert-category-title">Professional</h3>
-                    <ul class="cert-list">
-                        <li>
-                            <div class="cert-info">
-                                <strong>TOEFL ITP Prediction (Score: 550)</strong>
-                                <span>Webster English Course</span>
-                            </div>
-                            <button class="cert-link view-cert-btn" data-cert="Asset/TOEFL.jpg">VIEW ↗</button>
-                        </li>
-                        <li>
-                            <div class="cert-info">
-                                <strong>EF SET English Certificate</strong>
-                                <span>C1 Advanced (61/100)</span>
-                            </div>
-                            <button class="cert-link view-cert-btn" data-cert="Asset/EFSET.jpg">VIEW ↗</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
 
-    <section id="about-section" class="section-padding" style="background-color: var(--secondary-bg);">
-        <div class="container">
-            <h1 class="about-title reveal-base reveal-slide-up" id="about-izzan">ABOUT IZZAN</h1>
-            
-            <div class="about-image-wrapper">
-                <div class="about-image-container">
-                    <img src="./Muhammad Izzan Fieldi - Portfolio_files/PTB_0155.jpeg" alt="Izzan Yudisium" class="about-img">
-                    <div class="grain-overlay"></div>
-                </div>
-                <div class="about-caption">
-                    <span>B.A. IN INFORMATION SYSTEMS</span>
-                    <span>CLASS OF 2026</span>
-                </div>
-            </div>
+            const revealObserver = new IntersectionObserver((entries) => {
 
-            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <p style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; text-transform: uppercase; line-height: 1.2; margin-bottom: 30px; color: var(--text-color);">
-                    HEYA, I'M IZZAN. A CUM LAUDE INFORMATION SYSTEMS GRADUATE BASED IN PALEMBANG, INDONESIA.
-                </p>
-                <p style="font-size: 1.25rem; line-height: 1.6; color: var(--text-color); opacity: 0.9; margin-bottom: 40px;">
-                    I bridge the gap between complex business processes and data-driven insights. With hands-on experience in ERP inventory control and Human-Computer Interaction research published alongside international collaborators, my approach goes beyond mere aesthetics.
-                </p>
-                <a href="#" id="view-cv-link" class="text-link">VIEW RESUME ↗</a>
-            </div>
-        </div>
-    </section>
+                entries.forEach(entry => {
 
-    <section id="contact" class="big-footer">
-        <div class="container text-center">
-            <h2 class="giant-text reveal-base reveal-slide-side">LET'S TALK</h2>
-            <div class="footer-links">
-                <a href="https://www.instagram.com/izzanhanafi_" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-                <a href="mailto:muhammadizzanfieldi@gmail.com">EMAIL</a>
-                <a href="https://www.linkedin.com/in/muhammadizzanfieldi" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-            </div>
-            <div class="footer-bottom">
-                <p>PALEMBANG, ID</p>
-                <p>© 2026 M. IZZAN FIELDI</p>
-                <a href="#hero">BACK TO TOP ↑</a>
-            </div>
-        </div>
-    </section>
+                    if (entry.isIntersecting) {
 
-    <!-- Modals -->
-    <div id="cv-modal" class="cv-modal">
-        <div class="modal-overlay" id="modal-overlay"></div>
-        <button class="close-btn" id="close-cv">×</button>
-        <div class="modal-content">
-            <div class="cv-paper-frame">
-                <div class="cv-html-paper">
-                    <div class="cv-header">
-                        <h1>MUHAMMAD IZZAN FIELDI</h1>
-                        <p>Palembang, Indonesia | 081379153250 | <a href="mailto:muhammadizzanfieldi@gmail.com">muhammadizzanfieldi@gmail.com</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="cv-footer-actions">
-                <a href="./Asset/CV_Muhammad_Izzan_Fieldi_2026.pdf" download="" class="btn">DOWNLOAD PDF VERSION</a>
-            </div>
-        </div>
-    </div>
+                        entry.target.classList.add('is-visible');
 
-    <div id="cert-modal" class="cv-modal">
-        <div class="modal-overlay" id="cert-modal-overlay"></div>
-        <button class="close-btn" id="close-cert-btn">×</button>
-        <div class="modal-content" style="background: transparent; box-shadow: none; border: none; padding: 0;">
-            <img id="cert-preview-img" src="" alt="Certificate Preview">
-        </div>
-    </div>
+                    }
 
-    <script src="./Muhammad Izzan Fieldi - Portfolio_files/script.js.download"></script>
+                });
+
+            }, { threshold: 0.15 });
+
+
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+
+
+            /* 6. 3D CARD TILT EFFECT ON HOVER FOR PROJECTS */
+
+            const projectCards = document.querySelectorAll('.project-item');
+
+            projectCards.forEach(card => {
+
+                card.addEventListener('mousemove', (e) => {
+
+                    const rect = card.getBoundingClientRect();
+
+                    const x = e.clientX - rect.left - rect.width / 2;
+
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    card.style.transform = `perspective(1000px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg) scale(1.01)`;
+
+                });
+
+
+
+                card.addEventListener('mouseleave', () => {
+
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+
+                });
+
+            });
+
+
+
+            /* 7. CV MODAL SYSTEM INTERACTION */
+
+            const cvModal = document.getElementById('cv-modal');
+
+            const openCvBtn = document.getElementById('open-cv-btn');
+
+            const closeCvBtn = document.getElementById('close-cv-btn');
+
+
+
+            openCvBtn.addEventListener('click', () => {
+
+                cvModal.classList.add('active');
+
+            });
+
+
+
+            closeCvBtn.addEventListener('click', () => {
+
+                cvModal.classList.remove('active');
+
+            });
+
+
+
+            cvModal.addEventListener('click', (e) => {
+
+                if (e.target === cvModal) {
+
+                    cvModal.classList.remove('active');
+
+                }
+
+            });
+
+
+
+            /* 8. BACK TO TOP SMOOTH SCROLL */
+
+            const backToTopBtn = document.getElementById('back-to-top');
+
+            backToTopBtn.addEventListener('click', (e) => {
+
+                e.preventDefault();
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            });
+
+
+
+        });
+
+    </script>
+
 </body>
+
 </html>
