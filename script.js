@@ -131,21 +131,25 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (!counterElement || !loader) return; 
 
-        let currentValue = 0;
+        loader.style.transform = "translateY(0)";
+        counterElement.textContent = "100";
+
+        let currentValue = 100;
 
         function updateCounter() {
-            if (currentValue === 100) {
+            if (currentValue <= 0) {
                 loader.style.transform = "translateY(-100%)";
                 setTimeout(animateNameEntrance, 800); 
                 return;
             }
 
-            currentValue += Math.floor(Math.random() * 15) + 1;
-            if (currentValue > 100) currentValue = 100;
+            const decrement = Math.floor(Math.random() * 12) + 3;
+            currentValue -= decrement;
+            if (currentValue < 0) currentValue = 0;
 
             counterElement.textContent = currentValue.toString().padStart(3, '0');
 
-            let delay = Math.floor(Math.random() * 150) + 30;
+            let delay = Math.floor(Math.random() * 120) + 35;
             setTimeout(updateCounter, delay);
         }
         updateCounter();
